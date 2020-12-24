@@ -14,9 +14,7 @@ yarn serve
 
 ## 原型
 
-```
-https://h5.izuiyou.com/
-```
+[最右](https://h5.izuiyou.com/)
 
 ## 暂时效果图 2020-12-25
 
