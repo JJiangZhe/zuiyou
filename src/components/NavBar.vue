@@ -1,0 +1,107 @@
+<template>
+  <div class="NavBar">
+    <ul class="nav-list">
+      <router-link class="nav-list-item" tag="li" to="Home">
+        <van-icon
+          class="iconfont"
+          size="20"
+          class-prefix="icon"
+          name="zuiyou"
+        />
+        <span>最右</span>
+      </router-link>
+      <router-link class="nav-list-item" tag="li" to="Topic">
+        <van-icon class="iconfont" size="20" class-prefix="icon" name="huati" />
+        <span>话题</span>
+      </router-link>
+      <router-link class="nav-list-item" tag="li" to="Home">
+        <div class="circle">
+          <van-icon class="iconfont" size="20" class-prefix="icon" name="jia" />
+        </div>
+      </router-link>
+      <router-link class="nav-list-item" tag="li" to="Msg">
+        <van-icon
+          class="iconfont"
+          size="20"
+          class-prefix="icon"
+          name="xiaoxi"
+        />
+        <span>消息</span>
+      </router-link>
+      <router-link class="nav-list-item" tag="li" to="User">
+        <van-icon class="iconfont" size="20" class-prefix="icon" name="wode" />
+        <span>我的</span>
+      </router-link>
+    </ul>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+export default defineComponent({
+  name: "NavBar"
+});
+</script>
+
+<style lang="less" scoped>
+@import "../common/css/mixin.less";
+
+.NavBar {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 120px;
+  z-index: 999;
+
+  .nav-list {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .nav-list-item {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+
+    &.router-link-active {
+      color: #00a2ff;
+    }
+
+    i {
+      font-weight: bold;
+    }
+
+    span {
+      font-size: 26px;
+    }
+
+    .circle {
+      width: 80px;
+      height: 80px;
+      background-color: @primary;
+      border-radius: 50%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0px 0px 10px @primary;
+
+      i {
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+.theme-dark .nav-list-item {
+  color: #8a92a5;
+}
+
+.theme-light .nav-list-item {
+  color: #737685;
+}
+</style>

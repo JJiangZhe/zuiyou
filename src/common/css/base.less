@@ -1,0 +1,55 @@
+@import "./mixin.less";
+@import "./theme.less";
+
+@font-face {
+  font-family: "PingFang";
+  src: url(../font/PingFang1.ttf);
+}
+
+@font-face {
+  font-family: "PingFangfi";
+  src: url(../font/PingFang3.ttf);
+}
+
+@font-face {
+  font-family: "PingFanglt";
+  src: url(../font/PingFang4.ttf);
+}
+
+body,
+html {
+  font-family: "PingFang";
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+input,
+textarea {
+  border: none;
+  font-size: 32px;
+}
+
+button {
+  border: none;
+}
+
+#app {
+  min-height: 100%;
+  width: 100%;
+}
+
+// 遮罩层
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+}
+
+// 顶部导航占位符
+.bars_placeholder {
+  height: 120px;
+}

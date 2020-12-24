@@ -1,0 +1,118 @@
+@import "./mixin.less";
+
+.theme-light {
+  color: #686969;
+  background-color: @theme-light;
+
+  // 顶部 底部导航
+  .TopBar,
+  .NavBar {
+    background-color: @theme-light;
+  }
+
+  .TopBar {
+    box-shadow: 0 -2px 3px 3px rgba(121, 36, 36, 0.2);
+  }
+
+  .NavBar {
+    box-shadow: 0 2px 5px 5px rgba(121, 36, 36, 0.2);
+  }
+
+  // 分割线
+  .Divider {
+    background-color: @light-divider;
+  }
+
+  .text-color {
+    color: @light-text-color;
+  }
+
+  .h1-color {
+    color: @light-h1-color;
+  }
+
+  .h2-color {
+    color: @light-h2-color;
+  }
+
+  .bg-color,
+  textarea {
+    background-color: @light-bg-color;
+  }
+
+  .btn-color {
+    color: @light-btn-text-color;
+    background-color: @light-btn-color;
+  }
+
+  .mask {
+    background-color: @light-mask-bg;
+  }
+
+  .content {
+    background-color: @light-ctx-bg;
+  }
+}
+
+// ------------------------------------------------------------
+
+.theme-dark {
+  background-color: @theme-dark;
+  color: #8a92a5;
+
+  // 顶部 底部导航栏
+  .TopBar,
+  .NavBar {
+    background-color: @theme-dark;
+  }
+
+  .TopBar {
+    box-shadow: 0 -2px 3px 3px rgba(143, 137, 137, 0.2);
+  }
+
+  .NavBar {
+    box-shadow: 0 2px 5px 5px rgba(143, 137, 137, 0.2);
+  }
+
+  // 分割线
+  .Divider {
+    background-color: @dark-divider;
+  }
+
+  // 文字颜色
+  .text-color {
+    color: @dark-text-color;
+  }
+
+  // 标题颜色1
+  .h1-color {
+    color: @dark-h1-color;
+  }
+
+  // 标题颜色2
+  .h2-color {
+    color: @dark-h2-color;
+  }
+
+  // 次背景 输入框背景
+  .bg-color,
+  textarea {
+    background-color: @dark-bg-color;
+  }
+
+  // 按钮样式
+  .btn-color {
+    color: @dark-btn-text-color;
+    background-color: @dark-btn-color;
+  }
+
+  // 遮罩层样式
+  .mask {
+    background-color: @dark-mask-bg;
+  }
+
+  // 遮罩层内容背景
+  .content {
+    background-color: @dark-ctx-bg;
+  }
+}
