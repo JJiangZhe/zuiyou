@@ -18,7 +18,7 @@ yarn serve
 
 ![image](static-files/首页2.png)
 
-![](static-files/首页3.png)
+![image](static-files/首页3.png)
 
 ![](static-files/首页4.png)
 
