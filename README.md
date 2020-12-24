@@ -14,9 +14,9 @@ yarn serve
 
 ## 暂时效果图 2020-12-25
 
-![](static-files/首页1.png)
+![image](https://github.com/JJiangZhe/zuiyou/blob/main/static-files/%E6%88%91%E7%9A%84.png)
 
-![](static-files/首页2.png)
+![image](static-files/首页2.png)
 
 ![](static-files/首页3.png)
 
