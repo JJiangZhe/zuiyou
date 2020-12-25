@@ -127,7 +127,7 @@ export default defineComponent({
     line-height: 60px;
     text-align: center;
 
-    font-family: "PingFanglt";
+    font-family: "PingFangfi";
     font-size: 28px;
     border-radius: 50px;
     color: @primary;
