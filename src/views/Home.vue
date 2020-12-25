@@ -9,9 +9,16 @@
     />
     <!-- 占位符 -->
     <div class="bars_placeholder" />
+    <!-- 博文列表 -->
     <blog-item :list="blogs" @onClose="onBlogClose" />
+    <!-- 屏蔽弹出层 -->
     <close-popver ref="closePopRef" :top="closeTop" @onSubmit="onSubmit" />
+    <!-- 占位符 -->
     <div class="bars_placeholder" />
+    <!-- 刷新 -->
+    <div class="refresh" @click="onRefresh">
+      <van-icon name="shuaxin" class="iconfont" class-prefix="icon" />
+    </div>
     <nav-bar />
   </div>
 </template>
@@ -131,16 +138,45 @@ export default defineComponent({
       });
     };
 
+    const onRefresh = () => {
+      Toast({
+        message: "为你选出12条好帖",
+        position: "top"
+      });
+    };
+
     return {
       ...toRefs(topBar),
       blogs,
       onBlogClose,
       closeTop,
       closePopRef,
-      onSubmit
+      onSubmit,
+      onRefresh
     };
   }
 });
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+@import "../common/css/mixin.less";
+.refresh {
+  position: absolute;
+  bottom: 150px;
+  right: 40px;
+  width: 100px;
+  height: 100px;
+
+  border-radius: 30px;
+
+  .iconfont {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    color: @primary;
+    font-size: 28px;
+  }
+}
+</style>

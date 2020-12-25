@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" ref="appRef">
     <router-view #="{ Component }">
       <keep-alive include="Home">
         <component :is="Component" />

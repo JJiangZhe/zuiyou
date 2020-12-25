@@ -1,12 +1,12 @@
 <template>
   <!-- 屏蔽博客组件 -->
   <teleport to="#app">
-    <div class="mask" v-if="status" @click="setStatus"></div>
+    <div class="mask" v-show="status" @click="setStatus"></div>
     <div
       class="content"
       :class="className ? 'show' : 'hide'"
       :style="position"
-      v-if="status"
+      v-show="status"
     >
       <template v-if="!isInput">
         <div class="title h1-color">选择你不喜欢的原因</div>
