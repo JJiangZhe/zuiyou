@@ -1,4 +1,5 @@
 <template>
+  <!-- 按钮组件 -->
   <button class="btn-color" :style="style" @click="btnClick">
     <slot></slot>
   </button>

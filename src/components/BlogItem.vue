@@ -1,6 +1,7 @@
 <template>
+  <!-- 博文列表组件 -->
   <div v-for="item in list" :key="item.id">
-    <div class="item" style="padding: 0 15px">
+    <div class="item" style="padding: 15px">
       <!-- 顶部用户信息 -->
       <div class="top-info">
         <!-- 头像 -->
@@ -112,7 +113,7 @@ export default defineComponent({
   setup(props, context) {
     // 预览图片
     const preview = (imgs: [], index: number) => {
-      ImagePreview({ images: imgs, startPosition: index, closeable: true });
+      ImagePreview({ images: imgs, startPosition: index });
     };
 
     // 关闭按钮点击

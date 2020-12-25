@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <top-bar
+      fixed
       :list="bars"
       :crt="activeBarId"
       icon="sousuo"
@@ -16,8 +17,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, ref, toRefs } from "vue";
+import {
+  defineComponent,
+  onActivated,
+  onMounted,
+  reactive,
+  ref,
+  toRefs
+} from "vue";
 import { getCategorylv1 } from "@/api/home.ts";
+import { Toast } from "vant";
 import NavBar from "@/components/NavBar.vue";
 import TopBar from "@/components/TopBar.vue";
 import BlogItem from "@/components/BlogItem.vue";
@@ -31,6 +40,7 @@ export default defineComponent({
     ClosePopver
   },
   setup() {
+    console.log("1");
     const topBar = reactive({
       bars: [],
       activeBarId: 0,
@@ -45,7 +55,14 @@ export default defineComponent({
       topBar.activeBarId = data[0].id;
     });
 
-    const blogs = [
+    onActivated(() => {
+      Toast({
+        message: "刷新数据",
+        position: "bottom"
+      });
+    });
+
+    const blogs = ref([
       {
         id: 1,
         username: "美延美延美延",
@@ -88,7 +105,7 @@ export default defineComponent({
           upNumber: 999
         }
       }
-    ];
+    ]);
 
     const closeId = ref(0);
     const closeTop = ref(0);
@@ -101,9 +118,17 @@ export default defineComponent({
     };
 
     const onSubmit = (type: number, msg: string) => {
-      console.log(type);
-      console.log(msg);
+      blogs.value.splice(
+        blogs.value.findIndex(item => item.id === closeId.value),
+        1
+      );
+      console.log(type); // 理由选项 1 2 3
+      console.log(msg); // 其他屏蔽理由 ssss
       closePopRef.value.setStatus();
+      Toast({
+        message: "将减少类似内容推荐",
+        position: "bottom"
+      });
     };
 
     return {

@@ -1,4 +1,5 @@
 <template>
+  <!-- 输入框组件 -->
   <textarea :value="changeVal" :placeholder="placeholder" @input="updateVal">
   </textarea>
 </template>

@@ -1,4 +1,5 @@
 <template>
+  <!-- 屏蔽博客组件 -->
   <teleport to="#app">
     <div class="mask" v-if="status" @click="setStatus"></div>
     <div

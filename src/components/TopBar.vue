@@ -1,5 +1,6 @@
 <template>
-  <div class="TopBar">
+  <!-- 顶部导航栏组件 -->
+  <div class="TopBar" :style="isFixed">
     <!-- isDefault 数量多可滑动  isCenter 数量少居中  isPrimary 点击颜色蓝色 -->
     <div
       v-if="list.length"
@@ -29,27 +30,37 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { computed, defineComponent } from "vue";
 export default defineComponent({
   name: "TopBar",
   props: {
+    // 数据
     list: {
       type: Array,
       default: () => []
     },
+    // 点击值
     crt: {
       type: Number,
       default: 1
     },
+    // 右边icon
     icon: {
       type: [String, Boolean],
       default: false
     },
+    // icon颜色
     iconColor: {
       type: String,
       defalut: ""
     },
+    // 是否居中
     center: {
+      type: Boolean,
+      default: false
+    },
+    // 是否固定顶部
+    fixed: {
       type: Boolean,
       default: false
     }
@@ -60,7 +71,18 @@ export default defineComponent({
       context.emit("clickItem", id);
     };
 
-    return { clickItem };
+    const isFixed = computed(() => {
+      return (
+        props.fixed && {
+          position: "fixed",
+          top: 0 + "px",
+          left: 0 + "px",
+          right: 0 + "px"
+        }
+      );
+    });
+
+    return { clickItem, isFixed };
   }
 });
 </script>
@@ -69,10 +91,6 @@ export default defineComponent({
 @import "../common/css/mixin.less";
 
 .TopBar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   z-index: 999;
 
   display: flex;
@@ -86,10 +104,6 @@ export default defineComponent({
     overflow-x: auto;
     height: 100%;
     width: 100%;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
 
     .item {
       position: relative;

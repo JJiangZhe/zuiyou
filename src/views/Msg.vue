@@ -1,6 +1,12 @@
 <template>
   <div class="Msg">
-    <top-bar center :list="bars" :crt="activeBarId" @clickItem="barItemClick" />
+    <top-bar
+      fixed
+      center
+      :list="bars"
+      :crt="activeBarId"
+      @clickItem="barItemClick"
+    />
     <nav-bar />
   </div>
 </template>

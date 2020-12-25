@@ -1,4 +1,5 @@
 <template>
+  <!-- 分割线组件 -->
   <div class="Divider" :style="{ height: height + 'px' }"></div>
 </template>
 
@@ -7,7 +8,7 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "Divider",
   props: {
-    height: { type: Number, default: 0 }
+    height: { type: Number, default: 9 }
   }
 });
 </script>

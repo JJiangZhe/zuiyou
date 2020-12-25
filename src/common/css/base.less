@@ -39,6 +39,10 @@ button {
   width: 100%;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 // 遮罩层
 .mask {
   position: absolute;
@@ -52,4 +56,11 @@ button {
 // 顶部导航占位符
 .bars_placeholder {
   height: 120px;
+}
+
+.ovf2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }

@@ -1,4 +1,5 @@
 <template>
+  <!-- 底部导航栏组件 -->
   <div class="NavBar">
     <ul class="nav-list">
       <router-link class="nav-list-item" tag="li" to="Home">
@@ -80,15 +81,15 @@ export default defineComponent({
     }
 
     .circle {
-      width: 80px;
-      height: 80px;
+      width: 90px;
+      height: 90px;
       background-color: @primary;
       border-radius: 50%;
 
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0px 0px 10px @primary;
+      box-shadow: 0px 0px 3px @primary;
 
       i {
         color: #ffffff;
