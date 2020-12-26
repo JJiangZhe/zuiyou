@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { getLocal } from "@/common/js/utils";
+import { getLocal } from "@/utils/index";
 export default {
   setup() {
     const theme = getLocal("theme");

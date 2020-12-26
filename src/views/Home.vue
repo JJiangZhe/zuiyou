@@ -10,13 +10,15 @@
     <!-- 占位符 -->
     <div class="bars_placeholder" />
     <!-- 博文列表 -->
-    <blog-item :list="blogs" @onClose="onBlogClose" />
+    <pull-refresh @reload="onRefresh(false)" ref="pullRef">
+      <blog-item :list="blogs" @onClose="onBlogClose" />
+    </pull-refresh>
     <!-- 屏蔽弹出层 -->
     <close-popver ref="closePopRef" :top="closeTop" @onSubmit="onSubmit" />
     <!-- 占位符 -->
     <div class="bars_placeholder" />
     <!-- 刷新 -->
-    <div class="refresh" @click="onRefresh">
+    <div class="refresh" @click="onRefresh(true)">
       <van-icon name="shuaxin" class="iconfont" class-prefix="icon" />
     </div>
     <nav-bar />
@@ -30,7 +32,8 @@ import {
   onMounted,
   reactive,
   ref,
-  toRefs
+  toRefs,
+  toRaw
 } from "vue";
 import { getCategorylv1 } from "@/api/home.ts";
 import { Toast } from "vant";
@@ -38,16 +41,17 @@ import NavBar from "@/components/NavBar.vue";
 import TopBar from "@/components/TopBar.vue";
 import BlogItem from "@/components/BlogItem.vue";
 import ClosePopver from "@/components/ClosePopver.vue";
+import PullRefresh from "@/components/PullRefresh.vue";
 export default defineComponent({
   name: "Home",
   components: {
     NavBar,
     TopBar,
     BlogItem,
-    ClosePopver
+    ClosePopver,
+    PullRefresh
   },
   setup() {
-    console.log("1");
     const topBar = reactive({
       bars: [],
       activeBarId: 0,
@@ -118,12 +122,14 @@ export default defineComponent({
     const closeTop = ref(0);
     const closePopRef = ref();
 
+    // 打开屏蔽理由弹出层
     const onBlogClose = (id: number, top: number) => {
       closeId.value = id;
       closeTop.value = top;
       closePopRef.value.setStatus();
     };
 
+    // 提交屏蔽理由
     const onSubmit = (type: number, msg: string) => {
       blogs.value.splice(
         blogs.value.findIndex(item => item.id === closeId.value),
@@ -138,11 +144,25 @@ export default defineComponent({
       });
     };
 
-    const onRefresh = () => {
-      Toast({
-        message: "为你选出12条好帖",
-        position: "top"
-      });
+    const pullRef = ref();
+    // 刷新
+    const onRefresh = (type: boolean) => {
+      if (type) {
+        pullRef.value.setScrollTop();
+        setTimeout(() => {
+          pullRef.value.reload();
+          Toast({
+            message: "为你选出12条好帖",
+            position: "top"
+          });
+        }, 2000);
+      } else {
+        pullRef.value.reload();
+        Toast({
+          message: "为你选出12条好帖",
+          position: "top"
+        });
+      }
     };
 
     return {
@@ -152,7 +172,8 @@ export default defineComponent({
       closeTop,
       closePopRef,
       onSubmit,
-      onRefresh
+      onRefresh,
+      pullRef
     };
   }
 });

@@ -25,7 +25,7 @@
 <script lang="ts">
 import CellItem from "@/components/CellItem.vue";
 import NavBar from "@/components/NavBar.vue";
-import { getLocal, setLocal } from "@/common/js/utils";
+import { getLocal, setLocal } from "@/utils/index";
 import { defineComponent, ref } from "vue";
 export default defineComponent({
   components: { NavBar, CellItem },
