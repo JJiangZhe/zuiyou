@@ -2,7 +2,7 @@
   <!-- 底部导航栏组件 -->
   <div class="NavBar">
     <ul class="nav-list">
-      <router-link class="nav-list-item" tag="li" to="Home">
+      <router-link class="nav-list-item" tag="li" to="/home">
         <van-icon
           class="iconfont"
           size="20"
@@ -11,16 +11,22 @@
         />
         <span>最右</span>
       </router-link>
-      <router-link class="nav-list-item" tag="li" to="Topic">
+      <router-link
+        class="nav-list-item"
+        tag="li"
+        :to="
+          router.path.substr(0, 6) === '/topic' ? router.path : '/topic/tab1'
+        "
+      >
         <van-icon class="iconfont" size="20" class-prefix="icon" name="huati" />
         <span>话题</span>
       </router-link>
-      <router-link class="nav-list-item" tag="li" to="Home">
+      <router-link class="nav-list-item" tag="li" to="/home">
         <div class="circle">
           <van-icon class="iconfont" size="20" class-prefix="icon" name="jia" />
         </div>
       </router-link>
-      <router-link class="nav-list-item" tag="li" to="Msg">
+      <router-link class="nav-list-item" tag="li" to="/msg">
         <van-icon
           class="iconfont"
           size="20"
@@ -29,7 +35,7 @@
         />
         <span>消息</span>
       </router-link>
-      <router-link class="nav-list-item" tag="li" to="User">
+      <router-link class="nav-list-item" tag="li" to="/user">
         <van-icon class="iconfont" size="20" class-prefix="icon" name="wode" />
         <span>我的</span>
       </router-link>
@@ -39,8 +45,13 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { useRoute } from "vue-router";
 export default defineComponent({
-  name: "NavBar"
+  name: "NavBar",
+  setup() {
+    const router = useRoute();
+    return { router };
+  }
 });
 </script>
 

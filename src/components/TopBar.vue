@@ -88,7 +88,7 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-@import "../common/css/mixin.less";
+@import "~@/common/css/mixin.less";
 
 .TopBar {
   z-index: 999;

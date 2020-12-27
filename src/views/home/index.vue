@@ -10,7 +10,7 @@
     <!-- 占位符 -->
     <div class="bars_placeholder" />
     <!-- 博文列表 -->
-    <pull-refresh @reload="onRefresh(false)" ref="pullRef">
+    <pull-refresh prompt @reload="onRefresh(false)" ref="pullRef">
       <blog-item :list="blogs" @onClose="onBlogClose" />
     </pull-refresh>
     <!-- 屏蔽弹出层 -->
@@ -32,8 +32,7 @@ import {
   onMounted,
   reactive,
   ref,
-  toRefs,
-  toRaw
+  toRefs
 } from "vue";
 import { getCategorylv1 } from "@/api/home.ts";
 import { Toast } from "vant";
@@ -146,21 +145,23 @@ export default defineComponent({
 
     const pullRef = ref();
     // 刷新
-    const onRefresh = (type: boolean) => {
+    const onRefresh = (type = false) => {
       if (type) {
         pullRef.value.setScrollTop();
         setTimeout(() => {
           pullRef.value.reload();
           Toast({
             message: "为你选出12条好帖",
-            position: "top"
+            position: "top",
+            duration: 800
           });
         }, 2000);
       } else {
         pullRef.value.reload();
         Toast({
           message: "为你选出12条好帖",
-          position: "top"
+          position: "top",
+          duration: 800
         });
       }
     };
@@ -180,7 +181,7 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-@import "../common/css/mixin.less";
+@import "~@/common/css/mixin.less";
 .refresh {
   position: absolute;
   bottom: 150px;

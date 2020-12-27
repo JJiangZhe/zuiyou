@@ -8,22 +8,35 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/home",
     name: "Home",
-    component: () => import("../views/Home.vue")
+    component: () => import("@/views/home/index.vue")
   },
   {
     path: "/topic",
     name: "Topic",
-    component: () => import("../views/Topic.vue")
+    redirect: "/topic/tab1",
+    component: () => import("@/views/topic/index.vue"),
+    children: [
+      {
+        path: "tab1",
+        name: "Tab1",
+        component: () => import("@/views/topic/tab1.vue")
+      },
+      {
+        path: "tab2",
+        name: "Tab2",
+        component: () => import("@/views/topic/tab2.vue")
+      }
+    ]
   },
   {
     path: "/msg",
     name: "Msg",
-    component: () => import("../views/Msg.vue")
+    component: () => import("@/views/msg/index.vue")
   },
   {
     path: "/user",
     name: "User",
-    component: () => import("../views/User.vue")
+    component: () => import("@/views/user/index.vue")
   }
 ];
 

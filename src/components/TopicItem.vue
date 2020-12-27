@@ -77,7 +77,7 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-@import "../common/css/mixin.less";
+@import "~@/common/css/mixin.less";
 .topic-list {
   padding: 20px 40px;
 

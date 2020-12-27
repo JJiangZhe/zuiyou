@@ -1,22 +1,14 @@
 <template>
   <div class="Topic">
-    <top-bar
-      fixed
-      :list="bars"
-      :crt="activeBarId"
-      center
-      icon="sousuo"
-      @clickItem="barItemClick"
-    />
-    <div class="bars_placeholder" />
     <iz-title title="我加入的" />
     <div class="pf-wrap">
       <img src="@/assets/huati.jpg" />
     </div>
     <divider />
     <slide-tab :list="tabs" :crt="activeTabId" @clickItem="tabItemClick" />
-    <topic-item :list="topics" />
-    <div class="bars_placeholder" />
+    <pull-refresh @reload="onRefresh" ref="pullRef">
+      <topic-item :list="topics" />
+    </pull-refresh>
     <nav-bar />
   </div>
 </template>
@@ -25,38 +17,22 @@
 import Divider from "@/components/Divider.vue";
 import IzTitle from "@/components/IzTitle.vue";
 import NavBar from "@/components/NavBar.vue";
+import PullRefresh from "@/components/PullRefresh.vue";
 import SlideTab from "@/components/SlideTab.vue";
-import TopBar from "@/components/TopBar.vue";
 import TopicItem from "@/components/TopicItem.vue";
 import { defineComponent, reactive, ref, toRefs } from "vue";
+import { Toast } from "vant";
 export default defineComponent({
   name: "Topic",
   components: {
     NavBar,
-    TopBar,
     IzTitle,
     Divider,
     SlideTab,
-    TopicItem
+    TopicItem,
+    PullRefresh
   },
   setup() {
-    // 顶部导航
-    const topBar = reactive({
-      bars: [
-        {
-          id: 1,
-          title: "话题"
-        },
-        {
-          id: 2,
-          title: "右友"
-        }
-      ],
-      activeBarId: 1,
-      barItemClick(id: number) {
-        topBar.activeBarId = id;
-      }
-    });
     // 移动tab
     const slideTabs = reactive({
       tabs: [
@@ -136,7 +112,23 @@ export default defineComponent({
           "https://wx4.sinaimg.cn/thumb300/006Dk6pWly1glz3fn28izj313d13d7e7.jpg"
       }
     ]);
-    return { ...toRefs(topBar), ...toRefs(slideTabs), topics };
+
+    const pullRef = ref();
+    const onRefresh = () => {
+      pullRef.value.reload();
+      Toast({
+        message: "刷新成功",
+        position: "bottom",
+        duration: 800
+      });
+    };
+
+    return {
+      ...toRefs(slideTabs),
+      topics,
+      pullRef,
+      onRefresh
+    };
   }
 });
 </script>
