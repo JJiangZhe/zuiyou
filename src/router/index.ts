@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 
+// meta.id （1,2,3,4） form > to 表示前进 反之后退
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
@@ -8,11 +9,17 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/home",
     name: "Home",
+    meta: {
+      id: 1
+    },
     component: () => import("@/views/home/index.vue")
   },
   {
     path: "/topic",
     name: "Topic",
+    meta: {
+      id: 2
+    },
     redirect: "/topic/tab1",
     component: () => import("@/views/topic/index.vue"),
     children: [
@@ -20,7 +27,7 @@ const routes: Array<RouteRecordRaw> = [
         path: "tab1",
         name: "Tab1",
         meta: {
-          transition: "left"
+          transition: "slide-right"
         },
         component: () => import("@/views/topic/tab1.vue")
       },
@@ -28,7 +35,7 @@ const routes: Array<RouteRecordRaw> = [
         path: "tab2",
         name: "Tab2",
         meta: {
-          transition: "right"
+          transition: "slide-left"
         },
         component: () => import("@/views/topic/tab2.vue")
       }
@@ -37,11 +44,17 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/msg",
     name: "Msg",
+    meta: {
+      id: 3
+    },
     component: () => import("@/views/msg/index.vue")
   },
   {
     path: "/user",
     name: "User",
+    meta: {
+      id: 4
+    },
     component: () => import("@/views/user/index.vue")
   }
 ];

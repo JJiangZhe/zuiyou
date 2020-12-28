@@ -23,7 +23,7 @@ import TopicItem from "@/components/TopicItem.vue";
 import { defineComponent, reactive, ref, toRefs } from "vue";
 import { Toast } from "vant";
 export default defineComponent({
-  name: "Topic",
+  name: "Topic1",
   components: {
     NavBar,
     IzTitle,

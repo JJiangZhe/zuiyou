@@ -9,11 +9,12 @@
       @clickItem="barItemClick"
     />
     <div class="bars_placeholder" />
-    {{ meta.transition }}
     <router-view v-slot="{ Component }">
-      <transition :name="meta.transition" mode="out-in">
-        <component :is="Component" />
-      </transition>
+      <keep-alive include="Topic1,Topic2">
+        <transition :name="meta.transition">
+          <component :is="Component" />
+        </transition>
+      </keep-alive>
     </router-view>
     <div class="bars_placeholder" />
     <nav-bar />
@@ -56,6 +57,8 @@ export default defineComponent({
       return useRoute().meta;
     });
 
+    topBar.activeBarId = useRoute().name === "Tab1" ? 1 : 2;
+
     return {
       ...toRefs(topBar),
       meta
@@ -75,30 +78,4 @@ export default defineComponent({
     overflow: hidden;
   }
 }
-
-// .right-enter-active,
-// .right-leave-active,
-// .left-enter-active,
-// .left-leave-active {
-//   will-change: transform;
-//   transition: all 0.5s;
-//   width: 100vw;
-//   position: absolute;
-// }
-// .right-enter {
-//   opacity: 0;
-//   transform: translate3d(-100%, 0, 0);
-// }
-// .right-leave-active {
-//   opacity: 0;
-//   transform: translate3d(100%, 0, 0);
-// }
-// .left-enter {
-//   opacity: 0;
-//   transform: translate3d(100%, 0, 0);
-// }
-// .left-leave-active {
-//   opacity: 0;
-//   transform: translate3d(-100%, 0, 0);
-// }
 </style>
