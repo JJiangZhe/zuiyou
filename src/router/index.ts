@@ -19,11 +19,17 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "tab1",
         name: "Tab1",
+        meta: {
+          transition: "left"
+        },
         component: () => import("@/views/topic/tab1.vue")
       },
       {
         path: "tab2",
         name: "Tab2",
+        meta: {
+          transition: "right"
+        },
         component: () => import("@/views/topic/tab2.vue")
       }
     ]

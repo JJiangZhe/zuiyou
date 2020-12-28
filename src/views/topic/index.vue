@@ -9,7 +9,12 @@
       @clickItem="barItemClick"
     />
     <div class="bars_placeholder" />
-    <router-view></router-view>
+    {{ meta.transition }}
+    <router-view v-slot="{ Component }">
+      <transition :name="meta.transition" mode="out-in">
+        <component :is="Component" />
+      </transition>
+    </router-view>
     <div class="bars_placeholder" />
     <nav-bar />
   </div>
@@ -18,8 +23,9 @@
 <script lang="ts">
 import NavBar from "@/components/NavBar.vue";
 import TopBar from "@/components/TopBar.vue";
-import { defineComponent, reactive, toRefs, toRaw } from "vue";
+import { computed, defineComponent, reactive, toRefs } from "vue";
 import router from "@/router";
+import { useRoute } from "vue-router";
 export default defineComponent({
   name: "Topic",
   components: {
@@ -46,8 +52,13 @@ export default defineComponent({
       }
     });
 
+    const meta = computed(() => {
+      return useRoute().meta;
+    });
+
     return {
-      ...toRefs(topBar)
+      ...toRefs(topBar),
+      meta
     };
   }
 });
@@ -64,4 +75,30 @@ export default defineComponent({
     overflow: hidden;
   }
 }
+
+// .right-enter-active,
+// .right-leave-active,
+// .left-enter-active,
+// .left-leave-active {
+//   will-change: transform;
+//   transition: all 0.5s;
+//   width: 100vw;
+//   position: absolute;
+// }
+// .right-enter {
+//   opacity: 0;
+//   transform: translate3d(-100%, 0, 0);
+// }
+// .right-leave-active {
+//   opacity: 0;
+//   transform: translate3d(100%, 0, 0);
+// }
+// .left-enter {
+//   opacity: 0;
+//   transform: translate3d(100%, 0, 0);
+// }
+// .left-leave-active {
+//   opacity: 0;
+//   transform: translate3d(-100%, 0, 0);
+// }
 </style>
