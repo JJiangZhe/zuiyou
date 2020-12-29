@@ -5,20 +5,20 @@
       :list="bars"
       :crt="activeBarId"
       icon="sousuo"
-      @clickItem="barItemClick"
+      @clickItem="barItemClick()"
     />
     <!-- 占位符 -->
     <div class="bars_placeholder" />
-    <!-- 博文列表 -->
-    <pull-refresh prompt @reload="onRefresh(false)" ref="pullRef">
+    <!-- 刷新组件 - 博文列表 -->
+    <pull-refresh prompt @reload="onRefresh()" ref="pullRef">
       <blog-item :list="blogs" @onClose="onBlogClose" />
     </pull-refresh>
     <!-- 屏蔽弹出层 -->
-    <close-popver ref="closePopRef" :top="closeTop" @onSubmit="onSubmit" />
+    <close-popver ref="closePopRef" :top="closeTop" @onSubmit="onSubmit()" />
     <!-- 占位符 -->
     <div class="bars_placeholder" />
     <!-- 刷新 -->
-    <div class="refresh" @click="onRefresh(true)">
+    <div class="refresh" @click="onRefresh()">
       <van-icon name="shuaxin" class="iconfont" class-prefix="icon" />
     </div>
     <nav-bar />
@@ -145,25 +145,16 @@ export default defineComponent({
 
     const pullRef = ref();
     // 刷新
-    const onRefresh = (type = false) => {
-      if (type) {
-        pullRef.value.setScrollTop();
-        setTimeout(() => {
-          pullRef.value.reload();
-          Toast({
-            message: "为你选出12条好帖",
-            position: "top",
-            duration: 800
-          });
-        }, 2000);
-      } else {
+    const onRefresh = () => {
+      pullRef.value.setScrollTop();
+      setTimeout(() => {
         pullRef.value.reload();
         Toast({
           message: "为你选出12条好帖",
           position: "top",
           duration: 800
         });
-      }
+      }, 1000);
     };
 
     return {

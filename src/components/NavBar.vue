@@ -26,7 +26,11 @@
           <van-icon class="iconfont" size="20" class-prefix="icon" name="jia" />
         </div>
       </router-link>
-      <router-link class="nav-list-item" tag="li" to="/msg">
+      <router-link
+        class="nav-list-item"
+        tag="li"
+        :to="router.path.substr(0, 4) === '/msg' ? router.path : '/msg/caution'"
+      >
         <van-icon
           class="iconfont"
           size="20"

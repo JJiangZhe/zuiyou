@@ -76,10 +76,13 @@ export default defineComponent({
       const height = Math.floor(props.top) + 530 * 0.375;
       // height: 仅判断用  弹出层是否超出屏幕(去除上下固定导航栏) 120 * 2 * 0.375rem
       // 超出: 屏幕高度 667 - 点击坐标(小于667)
-      // 不超出: 点击坐标 + 30px(间隔)
+      // 不超出: 点击坐标 + 25px(间隔)
+      console.log(height);
+      console.log(props.top);
+
       return height > windowH - 240 * 0.375
         ? `bottom:${windowH - props.top}px;`
-        : `top:${props.top + 30}px;`;
+        : `top:${props.top + 25}px;`;
     });
     // 遮罩层显示
     const status = ref(false);
