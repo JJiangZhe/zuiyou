@@ -24,11 +24,9 @@ yarn serve
 
 ![](static-files/首页3.png)
 
-![](static-files/首页5.png)
-
-![](static-files/首页6.png)
-
 ![](static-files/话题1.png)
+
+![](static-files/话题2.png)
 
 ![](static-files/消息1.png)
 
