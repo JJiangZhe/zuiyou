@@ -1,36 +1,44 @@
 <template>
   <div class="Topic">
-    <iz-title title="我加入的" />
-    <div class="pf-wrap">
-      <img src="@/assets/huati.jpg" />
-    </div>
-    <iz-divider />
-    <iz-slide-tab :list="tabs" :crt="activeTabId" @clickItem="tabItemClick" />
+    <iz-slide-tab
+      :list="tabs"
+      :crt="activeTabId"
+      @clickItem="tabItemClick"
+      image="pp"
+      cName="red"
+      :isBig="false"
+      fixed
+    />
+    <!-- 占位符 -->
+    <div class="bars_placeholder" />
     <iz-pull-refresh @reload="onRefresh" ref="pullRef">
-      <iz-topic-item :list="topics" />
+      <iz-recent-item :list="recents" @onPulldown="onPulldown" />
     </iz-pull-refresh>
+    <van-action-sheet
+      class="bg-color"
+      v-model:show="showPulldown"
+      :actions="actions"
+      @select="onSelect"
+      cancel-text="取消"
+    />
     <iz-nav-bar />
   </div>
 </template>
 
 <script lang="ts">
-import IzDivider from "@/components/IzDivider.vue";
-import IzTitle from "@/components/IzTitle.vue";
+import { defineComponent, reactive, ref, toRefs } from "vue";
+import { Toast } from "vant";
 import IzNavBar from "@/components/IzNavBar.vue";
 import IzPullRefresh from "@/components/IzPullRefresh.vue";
 import IzSlideTab from "@/components/IzSlideTab.vue";
-import IzTopicItem from "@/components/IzTopicItem.vue";
-import { defineComponent, reactive, ref, toRefs } from "vue";
-import { Toast } from "vant";
+import IzRecentItem from "@/components/IzRecentItem.vue";
 export default defineComponent({
   name: "Topic2",
   components: {
     IzNavBar,
-    IzTitle,
-    IzDivider,
     IzSlideTab,
-    IzTopicItem,
-    IzPullRefresh
+    IzPullRefresh,
+    IzRecentItem
   },
   setup() {
     // 移动tab
@@ -38,39 +46,15 @@ export default defineComponent({
       tabs: [
         {
           id: 1,
-          title: "推荐"
+          title: "好友"
         },
         {
           id: 2,
-          title: "生活圈"
+          title: "推荐"
         },
         {
           id: 3,
-          title: "声控"
-        },
-        {
-          id: 4,
-          title: "爆笑"
-        },
-        {
-          id: 5,
-          title: "游戏"
-        },
-        {
-          id: 6,
-          title: "二次元"
-        },
-        {
-          id: 7,
-          title: "萌宠"
-        },
-        {
-          id: 8,
-          title: "科技"
-        },
-        {
-          id: 9,
-          title: "爱好"
+          title: "最新"
         }
       ],
       activeTabId: 1,
@@ -78,21 +62,22 @@ export default defineComponent({
         slideTabs.activeTabId = id;
       }
     });
-    // 话题列表
-    const topics = ref([
+    // 好友动态列表
+    const recents = ref([
       {
         id: 1,
         username: "赵美延",
         isHot: true,
-        persons: 1281634,
+        time: 1609424178,
         data:
           "赵美延（曺薇娟） ChoMiYeon。1997年1月31日出生，2018年5月2日以 CUBE新女团(G)I–DLE 成员出道。队内担当主唱。",
         imgs: [
-          "https://wx4.sinaimg.cn/orj360/0077GvCkgy1glwy183h4kj316o1kwh28.jpg",
-          "https://wx2.sinaimg.cn/thumb300/7d9ddd7dgy1glunp218m7j20k00qo41b.jpg",
-          "https://wx4.sinaimg.cn/thumb300/008aAugogy1glurctatvoj30rm0r6gnm.jpg",
-          "https://wx4.sinaimg.cn/thumb300/007e3Vf5gy1gluds0ldimj30hs0gxn00.jpg"
+          "https://wx4.sinaimg.cn/orj360/0077GvCkgy1glwy183h4kj316o1kwh28.jpg"
         ],
+        tags: ["#和我一起跨年", "#新年Flag"],
+        sex: 1,
+        like: 154,
+        comment: 38,
         avatar:
           "https://wx3.sinaimg.cn/thumb180/0077GvCkly1ghpkb3piixj30js0jrwhv.jpg"
       },
@@ -100,16 +85,39 @@ export default defineComponent({
         id: 2,
         username: "IZONE",
         isHot: true,
-        persons: 20181029,
+        time: 1609425907,
         data: "再次涌现的瞬间 全部展现 彼此约定 永远铭记",
         imgs: [
           "https://wx2.sinaimg.cn/thumb300/007dfx8lgy1glwmk7nkiqj31jc35s1kx.jpg",
-          "https://wx2.sinaimg.cn/thumb300/61e28cc3gy1gly7jrnvjyj20ck0ckmyn.jpg",
-          "https://wx4.sinaimg.cn/thumb300/005DlM1dgy1glunl3vgihj30r50r5aly.jpg",
-          "https://wx2.sinaimg.cn/thumb300/006GT9ROgy1gltcazjzc2j31b01b04qp.jpg"
+          "https://wx2.sinaimg.cn/thumb300/61e28cc3gy1gly7jrnvjyj20ck0ckmyn.jpg"
         ],
+        tags: ["#和我一起跨年", "#新年Flag"],
+        sex: 2,
+        like: 74,
+        comment: 14,
         avatar:
           "https://wx4.sinaimg.cn/thumb300/006Dk6pWly1glz3fn28izj313d13d7e7.jpg"
+      },
+      {
+        id: 3,
+        username: "IZONE",
+        isHot: true,
+        time: 1609425907,
+        data: `不知不觉已经是2020年的最后一天了😭
+虽然在一起的日子像Panorama一样一掠而过, 但这也是一年结尾的日子，让我们只描绘幸福的未来吧❣
+那么大家准备好和IZ*ONE一起Shoot! Take a Panorama📽 了吗?
+祝所有人 ℍ𝔸ℙℙ𝕐 ℕ𝔼𝕎 𝕐𝔼𝔸ℝ✨`,
+        imgs: [
+          "https://wx4.sinaimg.cn/thumb300/006XUZbCgy1gm7g6zhxnhj30vc0vcjtp.jpg",
+          "https://wx3.sinaimg.cn/thumb300/0081TXoily1gm79z8j0ulj30rs0rswvl.jpg",
+          "https://wxt.sinaimg.cn/thumb300/006TBQ92gy1gm0j7dpt6tj30qp0qpq9j.jpg"
+        ],
+        tags: ["#和我一起跨年", "#新年Flag"],
+        sex: 2,
+        like: 74,
+        comment: 14,
+        avatar:
+          "https://wxt.sinaimg.cn/thumb300/006TBQ92gy1gls3hxfpdxj31e0230qtb.jpg?tags=%5B%5D"
       }
     ]);
 
@@ -123,11 +131,35 @@ export default defineComponent({
       });
     };
 
+    // 下拉状态
+    const showPulldown = ref(false);
+    const actions = [
+      { name: "不喜欢这条动态" },
+      { name: "不喜欢这个人" },
+      { name: "举报" }
+    ];
+    // 监听下拉时
+    const onPulldown = (item: object) => {
+      console.log(item);
+      showPulldown.value = !showPulldown.value;
+    };
+    // 下拉点击
+    const onSelect = (item: object) => {
+      console.log(item);
+      // 默认情况下点击选项时不会自动收起
+      // 可以通过 close-on-click-action 属性开启自动收起
+      showPulldown.value = false;
+    };
+
     return {
       ...toRefs(slideTabs),
-      topics,
+      recents,
       pullRef,
-      onRefresh
+      onRefresh,
+      onPulldown,
+      actions,
+      showPulldown,
+      onSelect
     };
   }
 });

@@ -1,6 +1,6 @@
 <template>
   <!-- 顶部导航栏组件 -->
-  <div class="TopBar" :style="isFixed">
+  <div class="TopBar" :class="fixed && 'fixed'">
     <!-- isDefault 数量多可滑动  isCenter 数量少居中  isPrimary 点击颜色蓝色 -->
     <div
       v-if="list.length"
@@ -30,7 +30,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from "vue";
+import { defineComponent } from "vue";
 export default defineComponent({
   name: "TopBar",
   props: {
@@ -71,24 +71,19 @@ export default defineComponent({
       context.emit("clickItem", id);
     };
 
-    const isFixed = computed(() => {
-      return (
-        props.fixed && {
-          position: "fixed",
-          top: 0 + "px",
-          left: 0 + "px",
-          right: 0 + "px"
-        }
-      );
-    });
-
-    return { clickItem, isFixed };
+    return { clickItem };
   }
 });
 </script>
 
 <style lang="less" scoped>
 @import "~@/common/css/mixin.less";
+.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
 
 .TopBar {
   z-index: 999;

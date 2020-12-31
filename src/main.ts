@@ -8,13 +8,14 @@ import "@/assets/icon/iconfont.css";
 
 const app = createApp(App);
 
-import { Icon, Switch, Image as VanImage, Lazyload } from "vant";
+import { Icon, Switch, Image as VanImage, Lazyload, ActionSheet } from "vant";
 
 app
   .use(Icon)
   .use(Switch)
   .use(VanImage)
-  .use(Lazyload);
+  .use(Lazyload)
+  .use(ActionSheet);
 
 app
   .use(store)

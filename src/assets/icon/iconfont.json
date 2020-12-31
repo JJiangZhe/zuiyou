@@ -6,6 +6,41 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1916109",
+      "name": "评论",
+      "font_class": "pinglun",
+      "unicode": "e68f",
+      "unicode_decimal": 59023
+    },
+    {
+      "icon_id": "3427217",
+      "name": "爱心",
+      "font_class": "aixin",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
+      "icon_id": "7506926",
+      "name": "性别标签-男",
+      "font_class": "xingbiebiaoqian-nan1",
+      "unicode": "e62a",
+      "unicode_decimal": 58922
+    },
+    {
+      "icon_id": "12056033",
+      "name": "下",
+      "font_class": "xia",
+      "unicode": "e632",
+      "unicode_decimal": 58930
+    },
+    {
+      "icon_id": "7368734",
+      "name": "坐标定位",
+      "font_class": "zuobiaodingwei",
+      "unicode": "e629",
+      "unicode_decimal": 58921
+    },
+    {
       "icon_id": "4457220",
       "name": "太阳 白天 日间模式 白天晴 线性",
       "font_class": "taiyang",

@@ -39,6 +39,7 @@ button {
   width: 100%;
 }
 
+// 隐藏滚动条
 ::-webkit-scrollbar {
   display: none;
 }
@@ -58,6 +59,7 @@ button {
   height: 120px;
 }
 
+// 超出2行显示省略号
 .ovf2 {
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -171,3 +173,22 @@ button {
   animation: slideOutRight 0.2s linear forwards;
 }
 // transition end
+
+// 用户头像
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+// 头像男性
+.avatar-boy {
+  box-shadow: 2px 2px 2px 1px #b0e4fe, 0px 0px 00px 4px #1c8bd7,
+    inset 0px 0px 0px 10px #ffffff;
+}
+
+// 头像女性
+.avatar-girl {
+  box-shadow: 4px 4px 2px 1px #ffd3ea, 0px 0px 0px 4px #df425a,
+    inset 0px 0px 0px 10px #ffffff;
+}
