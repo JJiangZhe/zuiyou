@@ -1,12 +1,12 @@
 <template>
   <!-- 分割线组件 -->
-  <div class="Divider" :style="{ height: height + 'px' }"></div>
+  <div class="IzDivider" :style="{ height: height + 'px' }"></div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 export default defineComponent({
-  name: "Divider",
+  name: "IzDivider",
   props: {
     height: { type: Number, default: 9 }
   }
@@ -14,7 +14,7 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-.Divider {
+.IzDivider {
   width: 100%;
 }
 </style>

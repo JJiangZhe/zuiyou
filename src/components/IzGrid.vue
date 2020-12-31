@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="title" v-if="title">{{ title }}</div>
-    <divider v-if="title" :height="1" />
+    <iz-divider v-if="title" :height="1" />
     <div class="grid-list">
       <div
         class="grid-item"
@@ -31,10 +31,10 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Divider from "./Divider.vue";
+import IzDivider from "./IzDivider.vue";
 export default defineComponent({
   name: "IzGrid",
-  components: { Divider },
+  components: { IzDivider },
   props: {
     list: {
       type: Array,

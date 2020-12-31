@@ -95,17 +95,17 @@
         />
       </div>
     </div>
-    <divider :height="10" />
+    <iz-divider :height="10" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from "vue";
 import { ImagePreview } from "vant";
-import Divider from "./Divider.vue";
+import IzDivider from "./IzDivider.vue";
 export default defineComponent({
   name: "BlogItem",
-  components: { Divider },
+  components: { IzDivider },
   props: {
     list: Array
   },

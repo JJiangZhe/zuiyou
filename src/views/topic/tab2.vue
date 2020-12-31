@@ -4,33 +4,33 @@
     <div class="pf-wrap">
       <img src="@/assets/huati.jpg" />
     </div>
-    <divider />
-    <slide-tab :list="tabs" :crt="activeTabId" @clickItem="tabItemClick" />
-    <pull-refresh @reload="onRefresh" ref="pullRef">
-      <topic-item :list="topics" />
-    </pull-refresh>
-    <nav-bar />
+    <iz-divider />
+    <iz-slide-tab :list="tabs" :crt="activeTabId" @clickItem="tabItemClick" />
+    <iz-pull-refresh @reload="onRefresh" ref="pullRef">
+      <iz-topic-item :list="topics" />
+    </iz-pull-refresh>
+    <iz-nav-bar />
   </div>
 </template>
 
 <script lang="ts">
-import Divider from "@/components/Divider.vue";
+import IzDivider from "@/components/IzDivider.vue";
 import IzTitle from "@/components/IzTitle.vue";
-import NavBar from "@/components/NavBar.vue";
-import PullRefresh from "@/components/PullRefresh.vue";
-import SlideTab from "@/components/SlideTab.vue";
-import TopicItem from "@/components/TopicItem.vue";
+import IzNavBar from "@/components/IzNavBar.vue";
+import IzPullRefresh from "@/components/IzPullRefresh.vue";
+import IzSlideTab from "@/components/IzSlideTab.vue";
+import IzTopicItem from "@/components/IzTopicItem.vue";
 import { defineComponent, reactive, ref, toRefs } from "vue";
 import { Toast } from "vant";
 export default defineComponent({
   name: "Topic2",
   components: {
-    NavBar,
+    IzNavBar,
     IzTitle,
-    Divider,
-    SlideTab,
-    TopicItem,
-    PullRefresh
+    IzDivider,
+    IzSlideTab,
+    IzTopicItem,
+    IzPullRefresh
   },
   setup() {
     // 移动tab

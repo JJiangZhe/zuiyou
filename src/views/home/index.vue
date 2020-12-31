@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <top-bar
+    <iz-top-bar
       fixed
       :list="bars"
       :crt="activeBarId"
@@ -10,18 +10,18 @@
     <!-- 占位符 -->
     <div class="bars_placeholder" />
     <!-- 刷新组件 - 博文列表 -->
-    <pull-refresh prompt @reload="onRefresh()" ref="pullRef">
-      <blog-item :list="blogs" @onClose="onBlogClose" />
-    </pull-refresh>
+    <iz-pull-refresh prompt @reload="onRefresh()" ref="pullRef">
+      <iz-blog-item :list="blogs" @onClose="onBlogClose" />
+    </iz-pull-refresh>
     <!-- 屏蔽弹出层 -->
-    <close-popver ref="closePopRef" :top="closeTop" @onSubmit="onSubmit()" />
+    <iz-close-popver ref="closePopRef" :top="closeTop" @onSubmit="onSubmit()" />
     <!-- 占位符 -->
     <div class="bars_placeholder" />
     <!-- 刷新 -->
     <div class="refresh" @click="onRefresh()">
       <van-icon name="shuaxin" class="iconfont" class-prefix="icon" />
     </div>
-    <nav-bar />
+    <iz-nav-bar />
   </div>
 </template>
 
@@ -36,19 +36,19 @@ import {
 } from "vue";
 import { getCategorylv1 } from "@/api/home.ts";
 import { Toast } from "vant";
-import NavBar from "@/components/NavBar.vue";
-import TopBar from "@/components/TopBar.vue";
-import BlogItem from "@/components/BlogItem.vue";
-import ClosePopver from "@/components/ClosePopver.vue";
-import PullRefresh from "@/components/PullRefresh.vue";
+import IzNavBar from "@/components/IzNavBar.vue";
+import IzTopBar from "@/components/IzTopBar.vue";
+import IzBlogItem from "@/components/IzBlogItem.vue";
+import IzClosePopver from "@/components/IzClosePopver.vue";
+import IzPullRefresh from "@/components/IzPullRefresh.vue";
 export default defineComponent({
   name: "Home",
   components: {
-    NavBar,
-    TopBar,
-    BlogItem,
-    ClosePopver,
-    PullRefresh
+    IzNavBar,
+    IzTopBar,
+    IzBlogItem,
+    IzClosePopver,
+    IzPullRefresh
   },
   setup() {
     const topBar = reactive({

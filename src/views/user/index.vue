@@ -14,13 +14,13 @@
     </div>
     <!-- 占位符 -->
     <div class="bars_placeholder" />
-    <nav-bar />
+    <iz-nav-bar />
   </div>
 </template>
 
 <script lang="ts">
 import IzGrid from "@/components/IzGrid.vue";
-import NavBar from "@/components/NavBar.vue";
+import IzNavBar from "@/components/IzNavBar.vue";
 import { getLocal, setLocal } from "@/utils/index";
 import { defineComponent, reactive, toRefs } from "vue";
 
@@ -33,7 +33,7 @@ interface Grid {
 }
 
 export default defineComponent({
-  components: { NavBar, IzGrid },
+  components: { IzNavBar, IzGrid },
   name: "User",
   setup() {
     const state = reactive({

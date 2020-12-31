@@ -1,6 +1,6 @@
 <template>
   <div class="Msg">
-    <top-bar
+    <iz-top-bar
       fixed
       center
       :list="bars"
@@ -18,19 +18,19 @@
     </router-view>
     <!-- 占位符 -->
     <div class="bars_placeholder" />
-    <nav-bar />
+    <iz-nav-bar />
   </div>
 </template>
 
 <script lang="ts">
-import NavBar from "@/components/NavBar.vue";
-import TopBar from "@/components/TopBar.vue";
+import IzNavBar from "@/components/IzNavBar.vue";
+import IzTopBar from "@/components/IzTopBar.vue";
 import router from "@/router";
 import { computed, defineComponent, reactive, toRefs } from "vue";
 import { useRoute } from "vue-router";
 
 export default defineComponent({
-  components: { NavBar, TopBar },
+  components: { IzNavBar, IzTopBar },
   name: "Msg",
   setup() {
     const topBar = reactive({

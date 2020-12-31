@@ -1,19 +1,19 @@
 <template>
   <div>
     <iz-grid :list="gridList" :size="30" />
-    <divider />
+    <iz-divider />
     <iz-nologin msg="登陆后才能查看消息提醒哦~" />
   </div>
 </template>
 
 <script lang="ts">
-import Divider from "@/components/Divider.vue";
+import IzDivider from "@/components/IzDivider.vue";
 import IzGrid from "@/components/IzGrid.vue";
 import IzNologin from "@/components/IzNologin.vue";
 import { defineComponent, reactive, toRefs } from "vue";
 
 export default defineComponent({
-  components: { IzGrid, Divider, IzNologin },
+  components: { IzGrid, IzDivider, IzNologin },
   name: "Caution",
   setup() {
     const grids = reactive({
