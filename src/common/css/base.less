@@ -20,14 +20,13 @@ body,
 html {
   font-family: "PingFang";
   height: 100%;
-  overflow-x: hidden;
-  overflow-y: scroll;
 }
 
 input,
 textarea {
   border: none;
   font-size: 32px;
+  resize: none;
 }
 
 button {
@@ -66,6 +65,21 @@ button {
   -webkit-line-clamp: 2;
   overflow: hidden;
 }
+
+// 字体颜色 灰色
+.text-grey {
+  color: #bdbdbd;
+}
+
+// 字体大小 12 - 28
+.font(@i) when(@i <= 36) {
+  .f@{i} {
+    font-size: @i + 0px;
+  }
+  .font((@i + 2));
+}
+
+.font(12);
 
 // transition start
 @keyframes slideInLeft {

@@ -9,6 +9,20 @@ import "@/assets/icon/iconfont.css";
 const app = createApp(App);
 
 import { Icon, Switch, Image as VanImage, Lazyload, ActionSheet } from "vant";
+import { getLocal } from "./utils";
+
+// 权限验证
+app.directive("auth", {
+  mounted(el) {
+    console.log(el);
+    el.addEventListener("click", () => {
+      const token = getLocal("token");
+      if (!token) {
+        router.push("/login");
+      }
+    });
+  }
+});
 
 app
   .use(Icon)

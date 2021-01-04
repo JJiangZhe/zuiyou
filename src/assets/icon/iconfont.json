@@ -6,6 +6,62 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "10531788",
+      "name": "图片",
+      "font_class": "tupian",
+      "unicode": "e78b",
+      "unicode_decimal": 59275
+    },
+    {
+      "icon_id": "11537878",
+      "name": "链接",
+      "font_class": "lianjie",
+      "unicode": "e786",
+      "unicode_decimal": 59270
+    },
+    {
+      "icon_id": "14079999",
+      "name": "语音",
+      "font_class": "yuyin",
+      "unicode": "e656",
+      "unicode_decimal": 58966
+    },
+    {
+      "icon_id": "14625795",
+      "name": "视频",
+      "font_class": "shipin",
+      "unicode": "e69e",
+      "unicode_decimal": 59038
+    },
+    {
+      "icon_id": "18911432",
+      "name": "投票",
+      "font_class": "toupiao",
+      "unicode": "e804",
+      "unicode_decimal": 59396
+    },
+    {
+      "icon_id": "13153068",
+      "name": "话题",
+      "font_class": "huati1",
+      "unicode": "e8c1",
+      "unicode_decimal": 59585
+    },
+    {
+      "icon_id": "1025089",
+      "name": "艾特",
+      "font_class": "aite",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
+    },
+    {
+      "icon_id": "6912457",
+      "name": "拍照",
+      "font_class": "paizhao",
+      "unicode": "e6a1",
+      "unicode_decimal": 59041
+    },
+    {
       "icon_id": "1916109",
       "name": "评论",
       "font_class": "pinglun",

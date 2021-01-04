@@ -21,7 +21,7 @@
         <van-icon class="iconfont" size="20" class-prefix="icon" name="huati" />
         <span>话题</span>
       </router-link>
-      <router-link class="nav-list-item" tag="li" to="/home">
+      <router-link class="nav-list-item" tag="li" to="/send">
         <div class="circle">
           <van-icon class="iconfont" size="20" class-prefix="icon" name="jia" />
         </div>

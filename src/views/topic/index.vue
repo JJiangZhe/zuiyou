@@ -9,13 +9,21 @@
       @clickItem="barItemClick"
     />
     <div class="bars_placeholder" />
+
     <router-view v-slot="{ Component }">
-      <keep-alive include="Topic1,Topic2">
-        <transition :name="meta.transition">
+      <transition :name="meta.transition">
+        <keep-alive>
           <component :is="Component" />
-        </transition>
-      </keep-alive>
+        </keep-alive>
+      </transition>
     </router-view>
+
+    <!-- <router-view v-slot="{ Component }">
+      <keep-alive>
+        <component :is="Component" />
+      </keep-alive>
+    </router-view> -->
+
     <div class="bars_placeholder" />
     <iz-nav-bar />
   </div>
@@ -24,7 +32,7 @@
 <script lang="ts">
 import IzNavBar from "@/components/IzNavBar.vue";
 import IzTopBar from "@/components/IzTopBar.vue";
-import { computed, defineComponent, reactive, toRefs } from "vue";
+import { computed, defineComponent, onActivated, reactive, toRefs } from "vue";
 import router from "@/router";
 import { useRoute } from "vue-router";
 export default defineComponent({
@@ -58,6 +66,10 @@ export default defineComponent({
     });
 
     topBar.activeBarId = useRoute().name === "Tab1" ? 1 : 2;
+
+    onActivated(() => {
+      topBar.barItemClick(topBar.activeBarId);
+    });
 
     return {
       ...toRefs(topBar),

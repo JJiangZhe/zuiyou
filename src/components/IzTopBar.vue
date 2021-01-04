@@ -1,6 +1,9 @@
 <template>
   <!-- 顶部导航栏组件 -->
-  <div class="TopBar" :class="fixed && 'fixed'">
+  <div class="TopBar" :class="fixed && 'fixed'" :style="Style">
+    <div class="isCenter" v-show="scrollTop > 100">
+      <slot name="center" />
+    </div>
     <!-- isDefault 数量多可滑动  isCenter 数量少居中  isPrimary 点击颜色蓝色 -->
     <div
       v-if="list.length"
@@ -30,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { computed, defineComponent } from "vue";
 export default defineComponent({
   name: "TopBar",
   props: {
@@ -63,6 +66,11 @@ export default defineComponent({
     fixed: {
       type: Boolean,
       default: false
+    },
+    // 距离顶部 变色
+    scrollTop: {
+      type: Number,
+      default: -1
     }
   },
   emits: ["clickItem"],
@@ -71,7 +79,14 @@ export default defineComponent({
       context.emit("clickItem", id);
     };
 
-    return { clickItem };
+    const Style = computed(() => {
+      if (props.scrollTop === -1) return;
+      return {
+        background: props.scrollTop > 100 ? "#ffffff" : "rgba(0, 0, 0, 0)"
+      };
+    });
+
+    return { clickItem, Style };
   }
 });
 </script>

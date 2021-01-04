@@ -1,6 +1,7 @@
+// import { getLocal } from "@/utils";
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
+// import { Toast } from "vant";
 
-// meta.id （1,2,3,4） form > to 表示前进 反之后退
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
@@ -83,6 +84,18 @@ const routes: Array<RouteRecordRaw> = [
       transition: ""
     },
     component: () => import("@/views/user/index.vue")
+  },
+  {
+    path: "/send",
+    name: "Send",
+    meta: {
+      login: true
+    },
+    component: () => import("@/views/send/index.vue")
+  },
+  {
+    path: "/login",
+    component: () => import("@/views/login/index.vue")
   }
 ];
 
@@ -91,16 +104,25 @@ const router = createRouter({
   routes
 });
 
-// 暂时无用
 router.beforeEach((to, from, next) => {
-  const toId = to.meta.id;
-  const fromId = from.meta.id;
+  // if (to.meta.login) {
+  //   const token = getLocal("token");
+  //   if (!token) {
+  //     // router.push("/login");
+  //     Toast("请先登陆");
+  //     return;
+  //   }
+  // }
+
+  // 暂时无用
+  // const toId = to.meta.id;
+  // const fromId = from.meta.id;
   //  1 2 3 4
-  if (toId > fromId) {
-    to.meta.transition = "slide-left";
-  } else {
-    to.meta.transition = "slide-right";
-  }
+  // if (toId > fromId) {
+  //   to.meta.transition = "slide-left";
+  // } else {
+  //   to.meta.transition = "slide-right";
+  // }
   next();
 });
 

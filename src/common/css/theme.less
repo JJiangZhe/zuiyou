@@ -4,20 +4,22 @@
   color: #686969;
   background-color: @theme-light;
 
-  // 顶部 底部导航 刷新
+  // 顶部 底部导航 固定按钮
   .TopBar,
   .NavBar,
-  .refresh {
+  .page,
+  .Fixed-btn {
     background-color: @theme-light;
   }
 
+  // 背景
   .bg {
     background-color: @light-bg1-color;
   }
 
-  // 底部导航
+  // 底部导航 / 固定按钮
   .NavBar,
-  .refresh {
+  .Fixed-btn {
     box-shadow: 0 2px 5px 5px rgba(121, 36, 36, 0.2);
   }
 
@@ -55,7 +57,7 @@
 
   // 次背景 输入框背景
   .bg-color,
-  textarea,
+  .textarea,
   .van-action-sheet__item,
   .van-action-sheet__cancel {
     background-color: @light-bg-color;
@@ -85,19 +87,22 @@
   background-color: @theme-dark;
   color: #8a92a5;
 
-  // 顶部 底部导航栏  刷新
+  // 顶部 底部导航栏 背景 固定按钮
   .TopBar,
   .NavBar,
-  .refresh {
+  .page,
+  .Fixed-btn {
     background-color: @theme-dark;
   }
 
+  // 次背景
   .bg {
     background-color: @dark-bg1-color;
   }
 
+  // 底部导航 / 固定按钮
   .NavBar,
-  .refresh {
+  .Fixed-btn {
     box-shadow: 0 2px 5px 5px rgba(143, 137, 137, 0.2);
   }
 
@@ -135,7 +140,7 @@
 
   // 次背景 输入框背景
   .bg-color,
-  textarea,
+  .textarea,
   .van-action-sheet__item,
   .van-action-sheet__cancel {
     background-color: @dark-bg-color;

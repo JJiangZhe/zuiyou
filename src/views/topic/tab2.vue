@@ -11,7 +11,7 @@
     />
     <!-- 占位符 -->
     <div class="bars_placeholder" />
-    <iz-pull-refresh @reload="onRefresh" ref="pullRef">
+    <iz-pull-refresh @reload="onRefresh" ref="pullRef" prompt>
       <iz-recent-item :list="recents" @onPulldown="onPulldown" />
     </iz-pull-refresh>
     <van-action-sheet
@@ -21,6 +21,7 @@
       @select="onSelect"
       cancel-text="取消"
     />
+    <iz-fixed-button icon="paizhao" color="#FF5A7B" @click="onPhoto" />
     <iz-nav-bar />
   </div>
 </template>
@@ -32,13 +33,15 @@ import IzNavBar from "@/components/IzNavBar.vue";
 import IzPullRefresh from "@/components/IzPullRefresh.vue";
 import IzSlideTab from "@/components/IzSlideTab.vue";
 import IzRecentItem from "@/components/IzRecentItem.vue";
+import IzFixedButton from "@/components/IzFixedButton.vue";
 export default defineComponent({
   name: "Topic2",
   components: {
     IzNavBar,
     IzSlideTab,
     IzPullRefresh,
-    IzRecentItem
+    IzRecentItem,
+    IzFixedButton
   },
   setup() {
     // 移动tab
@@ -100,7 +103,7 @@ export default defineComponent({
       },
       {
         id: 3,
-        username: "IZONE",
+        username: "CRL'S",
         isHot: true,
         time: 1609425907,
         data: `不知不觉已经是2020年的最后一天了😭
@@ -151,6 +154,11 @@ export default defineComponent({
       showPulldown.value = false;
     };
 
+    // 打开相机
+    const onPhoto = () => {
+      console.log("1");
+    };
+
     return {
       ...toRefs(slideTabs),
       recents,
@@ -159,7 +167,8 @@ export default defineComponent({
       onPulldown,
       actions,
       showPulldown,
-      onSelect
+      onSelect,
+      onPhoto
     };
   }
 });

@@ -1,20 +1,52 @@
 <template>
-  <div class="User bg-color">
-    <div class="bg radius">
-      <iz-grid :list="gridList" />
+  <div>
+    <div class="user-bg">
+      <!-- <van-image
+          round
+          width="40"
+          height="40"
+          fit="cover"
+          src="https://img.yzcdn.cn/vant/cat.jpeg"
+        /> -->
+      <!-- <div class="info" @click="toLogin">登陆</div> -->
     </div>
-    <div class="bg radius">
-      <iz-grid :size="24" title="与右成长" :list="growths" @click="clickMore" />
+    <iz-top-bar
+      fixed
+      icon="shezhi"
+      :scrollTop="scrollTop"
+      :iconColor="scrollTop > 100 ? '#000000' : '#ffffff'"
+    >
+      <template #center>
+        <span class="f36">paboland</span>
+      </template>
+    </iz-top-bar>
+    <div class="user-wrap bg-color">
+      <div class="bg radius">
+        <iz-grid :list="gridList" />
+      </div>
+      <div class="bg radius">
+        <iz-grid
+          :size="24"
+          title="与右成长"
+          :list="growths"
+          @click="clickMore"
+        />
+      </div>
+      <div class="bg radius">
+        <iz-grid
+          :size="24"
+          title="小右推荐"
+          :list="recomds"
+          @click="clickMore"
+        />
+      </div>
+      <div class="bg radius">
+        <iz-grid :size="24" title="更多服务" :list="mores" @click="clickMore" />
+      </div>
+      <!-- 占位符 -->
+      <div class="bars_placeholder" />
+      <iz-nav-bar />
     </div>
-    <div class="bg radius">
-      <iz-grid :size="24" title="小右推荐" :list="recomds" @click="clickMore" />
-    </div>
-    <div class="bg radius">
-      <iz-grid :size="24" title="更多服务" :list="mores" @click="clickMore" />
-    </div>
-    <!-- 占位符 -->
-    <div class="bars_placeholder" />
-    <iz-nav-bar />
   </div>
 </template>
 
@@ -22,7 +54,17 @@
 import IzGrid from "@/components/IzGrid.vue";
 import IzNavBar from "@/components/IzNavBar.vue";
 import { getLocal, setLocal } from "@/utils/index";
-import { defineComponent, reactive, toRefs } from "vue";
+import {
+  computed,
+  defineComponent,
+  onDeactivated,
+  onMounted,
+  reactive,
+  ref,
+  toRefs
+} from "vue";
+import router from "@/router";
+import IzTopBar from "@/components/IzTopBar.vue";
 
 interface Grid {
   id: number;
@@ -33,7 +75,7 @@ interface Grid {
 }
 
 export default defineComponent({
-  components: { IzNavBar, IzGrid },
+  components: { IzNavBar, IzGrid, IzTopBar },
   name: "User",
   setup() {
     const state = reactive({
@@ -147,6 +189,11 @@ export default defineComponent({
           icon: "san",
           title: "青少年模式",
           color: "#B28835"
+        },
+        {
+          id: 19,
+          icon: "shezhi",
+          title: "设置"
         }
       ]
     });
@@ -189,17 +236,69 @@ export default defineComponent({
 
     setTheme();
 
-    return { changeTheme, ...toRefs(state), clickMore };
+    const toLogin = () => {
+      router.push("/login");
+    };
+
+    const scrollTop = ref(0);
+    const scrollToTop = () => {
+      scrollTop.value =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
+    };
+
+    const bgStyle = computed(() => {
+      return {
+        background: scrollTop.value > 100 ? "#ffffff" : "rgba(0, 0, 0, 0)"
+      };
+    });
+
+    onMounted(() => {
+      window.addEventListener("scroll", scrollToTop);
+    });
+
+    onDeactivated(() => {
+      window.removeEventListener("scroll", scrollToTop);
+    });
+
+    return {
+      changeTheme,
+      ...toRefs(state),
+      clickMore,
+      toLogin,
+      bgStyle,
+      scrollTop
+    };
   }
 });
 </script>
 
 <style lang="less" scoped>
-.User {
+.user-bg {
+  height: 500px;
+  width: 100%;
+  background-size: 100%;
+  background: url("~@/assets/user-bg.png");
+}
+
+.user-wrap {
   padding: 20px;
 }
+
 .radius {
   margin-bottom: 30px;
   border-radius: 30px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  padding: 30px 50px;
+
+  .info {
+    flex: 1;
+    margin-left: 30px;
+  }
 }
 </style>
