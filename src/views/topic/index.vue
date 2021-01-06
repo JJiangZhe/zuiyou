@@ -11,7 +11,7 @@
     <div class="bars_placeholder" />
 
     <router-view v-slot="{ Component }">
-      <transition :name="meta.transition">
+      <transition :name="meta.transition" mode="out-in">
         <keep-alive>
           <component :is="Component" />
         </keep-alive>

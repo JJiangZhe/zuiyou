@@ -31,8 +31,14 @@ request.interceptors.request.use(
 request.interceptors.response.use(
   response => {
     // Toast.clear();
-    console.log(response);
-    return response.data;
+    const { data, headers } = response;
+    const toast = headers.toast;
+    toast &&
+      Toast.loading({
+        message: data.message,
+        forbidClick: true
+      });
+    return data;
   },
   error => {
     console.log(error);

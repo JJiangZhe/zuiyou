@@ -8,18 +8,19 @@
           fit="cover"
           src="https://img.yzcdn.cn/vant/cat.jpeg"
         /> -->
-      <!-- <div class="info" @click="toLogin">登陆</div> -->
+      <div class="login" @click="toLogin">登陆 / 注册</div>
     </div>
     <iz-top-bar
       fixed
       icon="shezhi"
       :scrollTop="scrollTop"
-      :iconColor="scrollTop > 100 ? '#000000' : '#ffffff'"
+      :iconColor="scrollTop > 100 ? '#8A92A5' : '#ffffff'"
     >
       <template #center>
         <span class="f36">paboland</span>
       </template>
     </iz-top-bar>
+
     <div class="user-wrap bg-color">
       <div class="bg radius">
         <iz-grid :list="gridList" />
@@ -55,8 +56,8 @@ import IzGrid from "@/components/IzGrid.vue";
 import IzNavBar from "@/components/IzNavBar.vue";
 import { getLocal, setLocal } from "@/utils/index";
 import {
-  computed,
   defineComponent,
+  onActivated,
   onDeactivated,
   onMounted,
   reactive,
@@ -248,13 +249,11 @@ export default defineComponent({
         document.body.scrollTop;
     };
 
-    const bgStyle = computed(() => {
-      return {
-        background: scrollTop.value > 100 ? "#ffffff" : "rgba(0, 0, 0, 0)"
-      };
+    onMounted(() => {
+      window.addEventListener("scroll", scrollToTop);
     });
 
-    onMounted(() => {
+    onActivated(() => {
       window.addEventListener("scroll", scrollToTop);
     });
 
@@ -267,7 +266,6 @@ export default defineComponent({
       ...toRefs(state),
       clickMore,
       toLogin,
-      bgStyle,
       scrollTop
     };
   }
@@ -280,6 +278,21 @@ export default defineComponent({
   width: 100%;
   background-size: 100%;
   background: url("~@/assets/user-bg.png");
+
+  .login {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+
+    font-size: 32px;
+    width: 250px;
+    padding: 20px 0;
+    color: #328fc9;
+    border-radius: 50px;
+    background-color: #ffffff;
+  }
 }
 
 .user-wrap {

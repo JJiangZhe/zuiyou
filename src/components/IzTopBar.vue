@@ -1,6 +1,6 @@
 <template>
   <!-- 顶部导航栏组件 -->
-  <div class="TopBar" :class="fixed && 'fixed'" :style="Style">
+  <div class="TopBar" :class="[fixed && 'fixed', Style]">
     <div class="isCenter" v-show="scrollTop > 100">
       <slot name="center" />
     </div>
@@ -81,9 +81,7 @@ export default defineComponent({
 
     const Style = computed(() => {
       if (props.scrollTop === -1) return;
-      return {
-        background: props.scrollTop > 100 ? "#ffffff" : "rgba(0, 0, 0, 0)"
-      };
+      return props.scrollTop > 100 ? "" : "bg0";
     });
 
     return { clickItem, Style };

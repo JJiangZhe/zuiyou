@@ -11,7 +11,7 @@
     <div class="bars_placeholder" />
     <router-view v-slot="{ Component }">
       <keep-alive include="Topic1,Topic2">
-        <transition :name="meta.transition">
+        <transition :name="meta.transition" mode="out-in">
           <component :is="Component" />
         </transition>
       </keep-alive>
@@ -26,7 +26,7 @@
 import IzNavBar from "@/components/IzNavBar.vue";
 import IzTopBar from "@/components/IzTopBar.vue";
 import router from "@/router";
-import { computed, defineComponent, reactive, toRefs } from "vue";
+import { computed, defineComponent, onActivated, reactive, toRefs } from "vue";
 import { useRoute } from "vue-router";
 
 export default defineComponent({
@@ -59,6 +59,10 @@ export default defineComponent({
     });
 
     topBar.activeBarId = useRoute().name === "Caution" ? 1 : 2;
+
+    onActivated(() => {
+      topBar.barItemClick(topBar.activeBarId);
+    });
 
     return { ...toRefs(topBar), meta };
   }
