@@ -1,12 +1,16 @@
 <template>
-  <div>
-    <van-icon
-      name="guanbi"
-      class="iconfont"
-      class-prefix="icon"
-      @click="back"
-    />
-    <span @click="onClick">{{ title }}</span>
+  <div class="default">
+    <div class="wrap">
+      <van-icon
+        :size="size"
+        :name="icon"
+        class="iconfont"
+        class-prefix="icon"
+        @click="back"
+      />
+      <span class="submit" v-if="title" @click="onClick">{{ title }}</span>
+    </div>
+    <div class="center" v-if="center">{{ center }}</div>
   </div>
 </template>
 
@@ -16,7 +20,19 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "IzPageHead",
   props: {
-    title: String
+    icon: String,
+    size: {
+      type: Number,
+      default: 32
+    },
+    title: {
+      type: [String, Boolean],
+      default: false
+    },
+    center: {
+      type: [String, Boolean],
+      default: false
+    }
   },
   emits: ["click"],
   setup(props, context) {
@@ -33,7 +49,12 @@ export default defineComponent({
 });
 </script>
 <style lang="less" scoped>
-div {
+.default {
+  position: relative;
+  height: 100px;
+}
+
+.wrap {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -42,15 +63,25 @@ div {
 
   .iconfont {
     font-weight: bold;
-    font-size: 32px;
+    z-index: 99;
   }
 
-  span {
+  .submit {
     padding: 10px 30px;
     font-size: 22px;
     color: #ffffff;
     border-radius: 30px;
     background-color: #8aceff;
   }
+}
+
+.center {
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 40px;
 }
 </style>

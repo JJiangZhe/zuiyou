@@ -11,6 +11,7 @@
         class-prefix="icon"
       />
       <span v-if="leftTit">{{ leftTit }}</span>
+      <slot name="left" />
     </div>
 
     <div class="call-right">
@@ -22,9 +23,8 @@
         class="iconfont"
         class-prefix="icon"
       />
+      <slot name="right" />
     </div>
-
-    <slot class="right-slot" name="right"></slot>
   </div>
 </template>
 
@@ -33,22 +33,27 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "CellItem",
   props: {
+    // 左侧图标
     leftIcon: {
       type: [String, Boolean],
       default: false
     },
+    // 左侧图标颜色
     leftIconColor: {
       type: String,
       default: ""
     },
+    // 左侧文字
     leftTit: {
       type: [String, Boolean],
       default: false
     },
+    // 右侧图标
     rightIcon: {
       type: [String, Boolean],
       default: false
     },
+    // 右侧文字
     rightTit: {
       type: [String, Boolean],
       default: false

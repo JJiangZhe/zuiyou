@@ -1,7 +1,7 @@
 <template>
   <!-- 顶部导航栏组件 -->
   <div class="TopBar" :class="[fixed && 'fixed', Style]">
-    <div class="isCenter" v-show="scrollTop > 100">
+    <div class="isCenter" v-show="scrollTop > 80">
       <slot name="center" />
     </div>
     <!-- isDefault 数量多可滑动  isCenter 数量少居中  isPrimary 点击颜色蓝色 -->
@@ -28,6 +28,7 @@
       size="24"
       class="iconfont"
       class-prefix="icon"
+      @click="clickIcon"
     />
   </div>
 </template>
@@ -73,18 +74,22 @@ export default defineComponent({
       default: -1
     }
   },
-  emits: ["clickItem"],
+  emits: ["clickItem", "clickIcon"],
   setup(props, context) {
     const clickItem = (id: number) => {
       context.emit("clickItem", id);
     };
 
+    const clickIcon = () => {
+      context.emit("clickIcon");
+    };
+
     const Style = computed(() => {
       if (props.scrollTop === -1) return;
-      return props.scrollTop > 100 ? "" : "bg0";
+      return props.scrollTop > 80 ? "" : "bg0";
     });
 
-    return { clickItem, Style };
+    return { clickItem, clickIcon, Style };
   }
 });
 </script>

@@ -29,8 +29,8 @@
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from "vue";
 import { loginAction } from "@/api/user";
-import { setLocal } from "@/utils";
 import router from "@/router";
+import { useStore } from "vuex";
 export default defineComponent({
   name: "Login",
   setup() {
@@ -43,10 +43,13 @@ export default defineComponent({
       router.go(-1);
     };
 
+    const store = useStore();
+
     const login = async () => {
       const { data } = await loginAction(state);
-      data.token && setLocal("token", data.token);
-      console.log(data);
+      if (!data.token) return;
+      store.commit("setToken", data.token);
+      store.commit("initUser");
     };
 
     return { ...toRefs(state), back, login };

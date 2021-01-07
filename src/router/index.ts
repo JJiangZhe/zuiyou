@@ -1,6 +1,6 @@
-// import { getLocal } from "@/utils";
+import { getLocal } from "@/utils";
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
-// import { Toast } from "vant";
+import { Toast } from "vant";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -94,6 +94,10 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/send/index.vue")
   },
   {
+    path: "/setting",
+    component: () => import("@/views/settin/index.vue")
+  },
+  {
     path: "/login",
     component: () => import("@/views/login/index.vue")
   }
@@ -105,14 +109,14 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  // if (to.meta.login) {
-  //   const token = getLocal("token");
-  //   if (!token) {
-  //     // router.push("/login");
-  //     Toast("请先登陆");
-  //     return;
-  //   }
-  // }
+  if (to.meta.login) {
+    const token = getLocal("token");
+    if (!token) {
+      // router.push("/login");
+      Toast("请先登陆");
+      return;
+    }
+  }
 
   // 暂时无用
   // const toId = to.meta.id;

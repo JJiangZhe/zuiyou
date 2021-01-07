@@ -46,7 +46,7 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .fixed {
-  position: absolute;
+  position: fixed;
   bottom: 150px;
   right: 40px;
   width: 90px;

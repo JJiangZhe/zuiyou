@@ -1,23 +1,18 @@
 <template>
   <div>
     <div class="user-bg">
-      <!-- <van-image
-          round
-          width="40"
-          height="40"
-          fit="cover"
-          src="https://img.yzcdn.cn/vant/cat.jpeg"
-        /> -->
-      <div class="login" @click="toLogin">登陆 / 注册</div>
+      <div v-if="!user" class="login" @click="toLogin">登陆 / 注册</div>
+      <iz-user-info v-else :user="user" />
     </div>
     <iz-top-bar
       fixed
       icon="shezhi"
       :scrollTop="scrollTop"
-      :iconColor="scrollTop > 100 ? '#8A92A5' : '#ffffff'"
+      :iconColor="scrollTop > 80 ? '#8A92A5' : '#ffffff'"
+      @clickIcon="onSettin"
     >
-      <template #center>
-        <span class="f36">paboland</span>
+      <template v-if="user" #center>
+        <span class="f36">{{ user.nickname }}</span>
       </template>
     </iz-top-bar>
 
@@ -66,6 +61,7 @@ import {
 } from "vue";
 import router from "@/router";
 import IzTopBar from "@/components/IzTopBar.vue";
+import IzUserInfo from "./component/IzUserInfo.vue";
 
 interface Grid {
   id: number;
@@ -76,10 +72,11 @@ interface Grid {
 }
 
 export default defineComponent({
-  components: { IzNavBar, IzGrid, IzTopBar },
+  components: { IzNavBar, IzGrid, IzTopBar, IzUserInfo },
   name: "User",
   setup() {
     const state = reactive({
+      user: {},
       gridList: [
         {
           id: 1,
@@ -190,11 +187,6 @@ export default defineComponent({
           icon: "san",
           title: "青少年模式",
           color: "#B28835"
-        },
-        {
-          id: 19,
-          icon: "shezhi",
-          title: "设置"
         }
       ]
     });
@@ -255,18 +247,25 @@ export default defineComponent({
 
     onActivated(() => {
       window.addEventListener("scroll", scrollToTop);
+      // state.user = ;
+      state.user = JSON.parse(getLocal("user") as string);
     });
 
     onDeactivated(() => {
       window.removeEventListener("scroll", scrollToTop);
     });
 
+    const onSettin = () => {
+      router.push("/setting");
+    };
+
     return {
       changeTheme,
       ...toRefs(state),
       clickMore,
       toLogin,
-      scrollTop
+      scrollTop,
+      onSettin
     };
   }
 });
@@ -274,10 +273,11 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .user-bg {
-  height: 500px;
+  height: 600px;
   width: 100%;
   background-size: 100%;
   background: url("~@/assets/user-bg.png");
+  position: relative;
 
   .login {
     position: relative;
@@ -302,16 +302,5 @@ export default defineComponent({
 .radius {
   margin-bottom: 30px;
   border-radius: 30px;
-}
-
-.user-info {
-  display: flex;
-  align-items: center;
-  padding: 30px 50px;
-
-  .info {
-    flex: 1;
-    margin-left: 30px;
-  }
 }
 </style>

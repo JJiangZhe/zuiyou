@@ -1,13 +1,5 @@
 <template>
   <div id="app" ref="appRef">
-    <!-- <keep-alive include="Home">
-      <router-view #="{ Component }">
-        <transition :name="transtion">
-          <component :is="Component" />
-        </transition>
-      </router-view>
-    </keep-alive> -->
-
     <router-view v-slot="{ Component }">
       <transition>
         <keep-alive>
@@ -20,12 +12,18 @@
 
 <script lang="ts">
 import { getLocal } from "@/utils/index";
-// import { userInfo } from "./api/user";
+import { onMounted } from "vue";
+import { useStore } from "vuex";
 export default {
   setup() {
     const theme = getLocal("theme");
     const app = document.getElementById("app") as HTMLElement;
     app.className = theme ? theme : "theme-light";
+
+    onMounted(async () => {
+      const store = useStore();
+      store.commit("initUser");
+    });
 
     return {};
   }

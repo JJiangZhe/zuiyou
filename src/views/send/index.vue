@@ -1,6 +1,6 @@
 <template>
   <div class="index">
-    <iz-page-head title="发布" />
+    <iz-page-head icon="guanbi" title="发布" />
     <!-- 选择话题 -->
     <div class="bg-color topic-wrap">
       <div class="left">

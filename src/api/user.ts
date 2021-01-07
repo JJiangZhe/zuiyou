@@ -10,10 +10,7 @@ export const loginAction = (data: Login) => {
   return request({
     url: "/api/portrait/user/login/password",
     data,
-    method: "post",
-    headers: {
-      toast: true
-    }
+    method: "post"
   });
 };
 

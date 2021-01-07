@@ -30,18 +30,9 @@ request.interceptors.request.use(
 // 响应拦截器
 request.interceptors.response.use(
   response => {
-    // Toast.clear();
-    const { data, headers } = response;
-    const toast = headers.toast;
-    toast &&
-      Toast.loading({
-        message: data.message,
-        forbidClick: true
-      });
-    return data;
+    return response.data;
   },
   error => {
-    console.log(error);
     return error.data;
   }
 );
