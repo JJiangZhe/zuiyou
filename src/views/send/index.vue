@@ -3,7 +3,7 @@
     <iz-page-head icon="guanbi" title="发布" />
     <!-- 选择话题 -->
     <div class="bg-color topic-wrap">
-      <div class="left">
+      <div class="left" @click="checkTopic">
         <van-icon name="huati1" class="iconfont" class-prefix="icon" />
         <span>选择话题</span>
       </div>
@@ -13,7 +13,7 @@
       </div>
     </div>
     <!-- 内容 -->
-    <textarea class="page" v-model="content" placeholder="我的快乐源泉" />
+    <textarea class="theme-bg" v-model="content" placeholder="我的快乐源泉" />
     <!-- 底部按钮 -->
     <iz-divider :height="1" />
     <div class="btns">
@@ -24,21 +24,47 @@
       <van-icon name="toupiao" class="iconfont" class-prefix="icon" />
       <van-icon name="aite" class="iconfont" class-prefix="icon" />
     </div>
+
+    <router-view v-slot="{ Component }">
+      <keep-alive>
+        <transition name="top-bottom">
+          <component :is="Component" />
+        </transition>
+      </keep-alive>
+    </router-view>
   </div>
 </template>
 
 <script lang="ts">
 import IzDivider from "@/components/IzDivider/index.vue";
 import IzPageHead from "@/components/IzPageHead/index.vue";
-import { defineComponent, toRefs, reactive } from "vue";
+import { defineComponent, toRefs, reactive, onMounted } from "vue";
+import { chooseTopic } from "@/api/topic";
+import router from "@/router";
 export default defineComponent({
   components: { IzPageHead, IzDivider },
   name: "Send",
   setup() {
     const state = reactive({
+      topics: [],
       content: ""
     });
-    return { ...toRefs(state) };
+
+    const getTopics = async () => {
+      const { data: topics } = await chooseTopic();
+      state.topics = topics;
+    };
+
+    onMounted(() => {
+      getTopics();
+    });
+
+    const checkTopic = () => {
+      console.log("1");
+      router.push({ path: "/check" });
+    };
+
+    return { ...toRefs(state), checkTopic };
   }
 });
 </script>

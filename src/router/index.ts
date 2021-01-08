@@ -89,7 +89,14 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       login: true
     },
-    component: () => import("@/views/send/index.vue")
+    component: () => import("@/views/send/index.vue"),
+    children: [
+      {
+        path: "/check",
+        name: "Check",
+        component: () => import("@/views/send/check.vue")
+      }
+    ]
   },
   {
     path: "/setting",

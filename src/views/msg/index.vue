@@ -1,12 +1,6 @@
 <template>
   <div class="Msg">
-    <iz-top-bar
-      fixed
-      center
-      :list="bars"
-      :crt="activeBarId"
-      @clickItem="barItemClick"
-    />
+    <iz-tabs :list="bars" :crt="activeBarId" @clickItem="barItemClick" />
     <!-- 占位符 -->
     <div class="bars_placeholder" />
     <router-view v-slot="{ Component }">
@@ -23,14 +17,13 @@
 </template>
 
 <script lang="ts">
-import IzNavBar from "@/components/IzNavBar/index.vue";
-import IzTopBar from "@/components/IzTopBar/index.vue";
-import router from "@/router";
 import { computed, defineComponent, onActivated, reactive, toRefs } from "vue";
 import { useRoute } from "vue-router";
-
+import IzNavBar from "@/components/IzNavBar/index.vue";
+import IzTabs from "@/components/IzTabs/index.vue";
+import router from "@/router";
 export default defineComponent({
-  components: { IzNavBar, IzTopBar },
+  components: { IzNavBar, IzTabs },
   name: "Msg",
   setup() {
     const topBar = reactive({

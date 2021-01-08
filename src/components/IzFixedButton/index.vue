@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed Fixed-btn" @click="onClick">
+  <div class="fixed theme-bg theme-shadow" @click="onClick">
     <van-icon
       :name="icon"
       class="iconfont"

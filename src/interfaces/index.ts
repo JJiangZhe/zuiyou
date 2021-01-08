@@ -1,8 +1,8 @@
 // 根据分类查询文章
-interface ArticleByCt {
-  id: number;
+interface ArticleByType {
+  type: number;
   page: number;
-  pageSize: number;
+  limit: number;
 }
 
 // 发布文章
@@ -14,4 +14,4 @@ interface Login {
   password: string;
 }
 
-export { ArticleByCt, Login };
+export { ArticleByType, Login };

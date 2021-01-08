@@ -1,6 +1,6 @@
 <template>
   <!--滑动 tab 标签 组件  -->
-  <div class="tab-list" :class="fixed && 'fixed TopBar'">
+  <div class="tab-list" :class="fixed && 'fixed theme-bg'">
     <div
       v-for="item in list"
       :key="item.id"

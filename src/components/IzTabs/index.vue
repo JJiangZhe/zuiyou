@@ -1,24 +1,14 @@
 <template>
-  <!-- 顶部导航栏组件 -->
-  <div class="TopBar" :class="[fixed && 'fixed', Style]">
-    <div class="isCenter" v-show="scrollTop > 80">
-      <slot name="center" />
-    </div>
-    <!-- isDefault 数量多可滑动  isCenter 数量少居中  isPrimary 点击颜色蓝色 -->
-    <div
-      v-if="list.length"
-      :class="{ isCenter: center, isDefault: !center, isPrimary: !icon }"
-      :style="{ width: !center && icon && '84%' }"
-    >
+  <div class="IzTabs theme-bg">
+    <div class="list">
       <div
         class="item"
         :class="{ active: item.id === crt }"
-        :style="{ marginTop: !center && item.id === crt ? '-1px' : '0' }"
         v-for="item in list"
         :key="item.id"
         @click="clickItem(item.id)"
       >
-        {{ item.category_name || item.title }}
+        {{ item.title }}
       </div>
     </div>
     <van-icon
@@ -34,7 +24,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from "vue";
+import { defineComponent } from "vue";
 export default defineComponent({
   name: "TopBar",
   props: {
@@ -45,7 +35,7 @@ export default defineComponent({
     },
     // 点击值
     crt: {
-      type: Number,
+      type: [String, Number],
       default: 1
     },
     // 右边icon
@@ -57,21 +47,6 @@ export default defineComponent({
     iconColor: {
       type: String,
       defalut: ""
-    },
-    // 是否居中
-    center: {
-      type: Boolean,
-      default: false
-    },
-    // 是否固定顶部
-    fixed: {
-      type: Boolean,
-      default: false
-    },
-    // 距离顶部 变色
-    scrollTop: {
-      type: Number,
-      default: -1
     }
   },
   emits: ["clickItem", "clickIcon"],
@@ -84,55 +59,25 @@ export default defineComponent({
       context.emit("clickIcon");
     };
 
-    const Style = computed(() => {
-      if (props.scrollTop === -1) return;
-      return props.scrollTop > 80 ? "" : "bg0";
-    });
-
-    return { clickItem, clickIcon, Style };
+    return { clickItem, clickIcon };
   }
 });
 </script>
 
 <style lang="less" scoped>
-@import "~@/common/css/mixin.less";
-.fixed {
+.IzTabs {
+  z-index: 999;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-}
-
-.TopBar {
-  z-index: 999;
 
   display: flex;
   align-items: center;
   padding: 0 20px;
   height: 120px;
 
-  .isDefault {
-    display: flex;
-    align-items: center;
-    overflow-x: auto;
-    height: 100%;
-    width: 100%;
-
-    .item {
-      position: relative;
-      font-size: 42px;
-      padding: 0 20px;
-      white-space: nowrap;
-
-      &.active {
-        color: #149eff;
-        font-size: 50px;
-        font-weight: bold;
-      }
-    }
-  }
-
-  .isCenter {
+  .list {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -163,24 +108,6 @@ export default defineComponent({
 
       transform: translateX(-50%);
       background-color: #159efc;
-    }
-
-    .item:nth-child(2).active {
-      color: #ac3c4f;
-
-      &::after {
-        background-color: #ac3c4f;
-      }
-    }
-  }
-
-  .isPrimary {
-    .item.active {
-      color: #149eff !important;
-
-      &::after {
-        background-color: #149eff !important;
-      }
     }
   }
 

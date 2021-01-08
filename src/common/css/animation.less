@@ -1,26 +1,26 @@
-.left {
+.left-defaultAn {
   position: fixed;
   left: 0%;
   width: 100vw;
   height: 100vh;
 }
 
-.slide-left-enter-active:extend(.left) {
+.slide-left-enter-active:extend(.left-defaultAn) {
   top: 120px;
   animation: slideInLeft 0.2s linear forwards;
 }
 
-.slide-left-leave-active:extend(.left) {
+.slide-left-leave-active:extend(.left-defaultAn) {
   top: 120px;
   animation: slideInRight 0.2s linear forwards;
 }
 
-.slide-right-enter-active:extend(.left) {
+.slide-right-enter-active:extend(.left-defaultAn) {
   top: 120px;
   animation: slideOutLeft 0.2s linear forwards;
 }
 
-.slide-right-leave-active:extend(.left) {
+.slide-right-leave-active:extend(.left-defaultAn) {
   top: 120px;
   animation: slideOutRight 0.2s linear forwards;
 }
@@ -91,5 +91,23 @@
     top: 120px;
     left: 0;
     opacity: 1;
+  }
+}
+
+.top-bottom-enter-active {
+  animation: toTop 2.5s linear forwards;
+}
+
+.top-bottom-leave-active {
+  animation: toTop 2.5s linear forwards;
+}
+
+@keyframes toTop {
+  from {
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <!-- 底部导航栏组件 -->
-  <div class="NavBar">
+  <div class="NavBar theme-bg theme-shadow">
     <ul class="nav-list">
       <router-link class="nav-list-item" tag="li" to="/home">
         <van-icon

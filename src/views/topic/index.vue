@@ -1,10 +1,8 @@
 <template>
   <div class="Topic">
-    <iz-top-bar
-      fixed
+    <iz-tabs
       :list="bars"
       :crt="activeBarId"
-      center
       icon="sousuo"
       @clickItem="barItemClick"
     />
@@ -24,15 +22,15 @@
 
 <script lang="ts">
 import IzNavBar from "@/components/IzNavBar/index.vue";
-import IzTopBar from "@/components/IzTopBar/index.vue";
+import IzTabs from "@/components/IzTabs/index.vue";
 import { computed, defineComponent, onActivated, reactive, toRefs } from "vue";
-import router from "@/router";
 import { useRoute } from "vue-router";
+import router from "@/router";
 export default defineComponent({
   name: "Topic",
   components: {
     IzNavBar,
-    IzTopBar
+    IzTabs
   },
   setup() {
     // 顶部导航
@@ -81,6 +79,14 @@ export default defineComponent({
     height: auto;
     border-radius: 15px;
     overflow: hidden;
+  }
+}
+
+/deep/ .item:nth-child(2).active {
+  color: #ac3c4f !important;
+
+  &::after {
+    background-color: #ac3c4f !important;
   }
 }
 </style>

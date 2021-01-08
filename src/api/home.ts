@@ -1,12 +1,5 @@
 import request from "@/utils/axios";
-import { ArticleByCt } from "@/interfaces";
-
-// 获取轮播图
-export const getBanners = () => {
-  return request({
-    url: "​/api​/portrait​/banner​/ten"
-  });
-};
+import { ArticleByType } from "@/interfaces";
 
 // 获取分类
 export const getCategorylv1 = () => {
@@ -15,14 +8,15 @@ export const getCategorylv1 = () => {
   });
 };
 
-// 分类获取文章
-export const getArticleByCt = (params: ArticleByCt) => {
+// 根据文章类型获取文章
+export const getArticleByType = (params: ArticleByType) => {
   return request({
-    url: "/api/portrait/post/level",
+    url: "/api/portrait/post/list",
     params
   });
 };
 
+// 根据话题获取文章
 export const getTopicByCt = (id: number) => {
   return request({
     url: "/api/portrait/topic/read/" + id

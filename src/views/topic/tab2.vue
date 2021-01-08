@@ -20,6 +20,7 @@
       :actions="actions"
       @select="onSelect"
       cancel-text="取消"
+      close-on-click-action
     />
     <iz-fixed-button icon="paizhao" color="#FF5A7B" @click="onPhoto" />
     <iz-nav-bar />
@@ -151,7 +152,7 @@ export default defineComponent({
       console.log(item);
       // 默认情况下点击选项时不会自动收起
       // 可以通过 close-on-click-action 属性开启自动收起
-      showPulldown.value = false;
+      // showPulldown.value = false;
     };
 
     // 打开相机

@@ -49,8 +49,8 @@
 <script lang="ts">
 import IzGrid from "@/components/IzGrid/index.vue";
 import IzNavBar from "@/components/IzNavBar/index.vue";
-import IzTopBar from "@/components/IzTopBar/index.vue";
 import IzUserInfo from "./component/IzUserInfo.vue";
+import IzTopBar from "./component/IzTopBar.vue";
 import { getLocal, setLocal } from "@/utils/index";
 import {
   defineComponent,

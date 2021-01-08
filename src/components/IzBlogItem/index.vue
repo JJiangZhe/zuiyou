@@ -10,15 +10,15 @@
           round
           lazy-load
           fit="cover"
-          :src="item.avatar"
+          :src="item.user.avatar"
         />
         <!-- 名称 描述 -->
         <div class="info">
           <div class="name">
-            <span class="username">{{ item.username }}</span>
+            <span class="username">{{ item.user.nickname }}</span>
             <img class="label" src="@/assets/yoyo.png" />
           </div>
-          <div v-if="item.desc" class="desc">{{ item.desc }}</div>
+          <div v-if="item.desc" class="desc">"IZONE"</div>
         </div>
         <!-- 关注 关闭 -->
         <div class="btn">
@@ -32,24 +32,24 @@
         </div>
       </div>
       <!-- 消息区 -->
-      <div class="msg text-color">{{ item.msg }}</div>
+      <div class="msg text-color">{{ item.post_content }}</div>
       <!-- 图片区 -->
       <div class="imgs">
         <van-image
           class="norem"
-          v-for="(img, i) in item.imgs"
+          v-for="(img, i) in item.postImages"
           :width="size"
           :height="size"
           :key="i"
           :radius="4"
-          :src="img"
+          :src="img.path"
           lazy-load
           fit="cover"
           @click="preview(item.imgs, i)"
         />
       </div>
       <!-- 神评区 -->
-      <div class="great bg-color">
+      <!-- <div class="great bg-color">
         <div class="great-top">
           <img src="@/assets/great.png" />
           <div class="right">
@@ -63,7 +63,7 @@
           </div>
         </div>
         <div class="comment">{{ item.greatCm.msg }}</div>
-      </div>
+      </div> -->
       <!-- 操作栏 转发 评论 点赞 -->
       <div class="oper-btns">
         <van-icon
@@ -72,21 +72,21 @@
           class="iconfont"
           class-prefix="icon"
         />
-        <span>{{ item.forwarding }}</span>
+        <span>{{ item.post_sharenum }}</span>
         <van-icon
           color="#8a92a5"
           name="xiaoxi1"
           class="iconfont"
           class-prefix="icon"
         />
-        <span>{{ item.comment }}</span>
+        <span>{{ 0 }}</span>
         <van-icon
           color="#8a92a5"
           name="shangyi"
           class="iconfont"
           class-prefix="icon"
         />
-        <span>{{ item.upNumber }}</span>
+        <span>{{ 0 }}</span>
         <van-icon
           color="#8a92a5"
           name="xiayi"
