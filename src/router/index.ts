@@ -23,7 +23,6 @@ const routes: Array<RouteRecordRaw> = [
       id: 2,
       transition: ""
     },
-    redirect: "/topic/tab1",
     component: () => import("@/views/topic/index.vue"),
     children: [
       {
@@ -49,7 +48,6 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/msg",
     name: "Msg",
-    redirect: "caution",
     meta: {
       id: 3,
       transition: ""

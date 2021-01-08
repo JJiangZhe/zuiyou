@@ -92,7 +92,7 @@ export default defineComponent({
   top: 110px;
   left: 0;
   right: 0;
-  z-index: 999;
+  z-index: 998;
 }
 
 .tab-list {

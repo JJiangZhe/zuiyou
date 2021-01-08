@@ -14,9 +14,7 @@
       <router-link
         class="nav-list-item"
         tag="li"
-        :to="
-          router.path.substr(0, 6) === '/topic' ? router.path : '/topic/tab1'
-        "
+        :to="router.path.substr(0, 6) === '/topic' ? router.path : '/topic'"
       >
         <van-icon class="iconfont" size="20" class-prefix="icon" name="huati" />
         <span>话题</span>
@@ -29,7 +27,7 @@
       <router-link
         class="nav-list-item"
         tag="li"
-        :to="router.path.substr(0, 4) === '/msg' ? router.path : '/msg/caution'"
+        :to="router.path.substr(0, 4) === '/msg' ? router.path : '/msg'"
       >
         <van-icon
           class="iconfont"

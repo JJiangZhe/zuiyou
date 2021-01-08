@@ -11,19 +11,12 @@
     <div class="bars_placeholder" />
 
     <router-view v-slot="{ Component }">
-      <transition :name="meta.transition" mode="out-in">
+      <transition :name="meta.transition">
         <keep-alive>
           <component :is="Component" />
         </keep-alive>
       </transition>
     </router-view>
-
-    <!-- <router-view v-slot="{ Component }">
-      <keep-alive>
-        <component :is="Component" />
-      </keep-alive>
-    </router-view> -->
-
     <div class="bars_placeholder" />
     <iz-nav-bar />
   </div>

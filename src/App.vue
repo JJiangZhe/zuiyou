@@ -1,11 +1,9 @@
 <template>
   <div id="app" ref="appRef">
     <router-view v-slot="{ Component }">
-      <transition>
-        <keep-alive>
-          <component :is="Component" />
-        </keep-alive>
-      </transition>
+      <keep-alive>
+        <component :is="Component" />
+      </keep-alive>
     </router-view>
   </div>
 </template>

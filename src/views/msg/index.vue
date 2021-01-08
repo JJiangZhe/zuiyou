@@ -11,7 +11,7 @@
     <div class="bars_placeholder" />
     <router-view v-slot="{ Component }">
       <keep-alive include="Topic1,Topic2">
-        <transition :name="meta.transition" mode="out-in">
+        <transition :name="meta.transition">
           <component :is="Component" />
         </transition>
       </keep-alive>
@@ -50,7 +50,7 @@ export default defineComponent({
       barItemClick(id: number) {
         topBar.activeBarId = id;
         const item = topBar.bars.find(item => item.id === id);
-        item && router.push({ path: item.url });
+        item && router.push({ path: "/msg/" + item.url });
       }
     });
 
