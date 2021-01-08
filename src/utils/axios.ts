@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Toast } from "vant";
 import { getLocal } from ".";
 
 const request = axios.create({
@@ -10,14 +9,11 @@ const request = axios.create({
 // 请求拦截器
 request.interceptors.request.use(
   config => {
-    Toast.loading({
-      message: "加载中...",
-      forbidClick: true
-    });
-
-    if (config.headers.authorization) {
+    const { headers } = config;
+    // 需要token
+    if (headers.authorization) {
       const token = getLocal("token");
-      config.headers.authorization = "Bearer " + token;
+      headers.authorization = "Bearer " + token;
     }
 
     return config;

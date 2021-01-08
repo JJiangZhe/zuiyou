@@ -5,6 +5,9 @@ interface ArticleByCt {
   pageSize: number;
 }
 
+// 发布文章
+interface publish {}
+
 // 登陆
 interface Login {
   phone: string;

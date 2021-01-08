@@ -7,7 +7,7 @@
       :class="[cName, item.id === crt && 'active', isBig && 'big']"
       @click="clickItem(item.id)"
     >
-      {{ item.title }}
+      {{ item.category_name || item.title }}
     </div>
     <!-- 右侧图标 -->
     <van-icon

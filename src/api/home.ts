@@ -22,3 +22,9 @@ export const getArticleByCt = (params: ArticleByCt) => {
     params
   });
 };
+
+export const getTopicByCt = (id: number) => {
+  return request({
+    url: "/api/portrait/topic/read/" + id
+  });
+};
