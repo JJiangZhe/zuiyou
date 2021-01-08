@@ -28,8 +28,8 @@
 </template>
 
 <script lang="ts">
-import IzDivider from "@/components/IzDivider.vue";
-import IzPageHead from "@/components/IzPageHead.vue";
+import IzDivider from "@/components/IzDivider/index.vue";
+import IzPageHead from "@/components/IzPageHead/index.vue";
 import { defineComponent, toRefs, reactive } from "vue";
 export default defineComponent({
   components: { IzPageHead, IzDivider },

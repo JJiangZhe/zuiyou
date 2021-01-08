@@ -27,20 +27,19 @@
 import {
   defineComponent,
   onActivated,
-  onDeactivated,
   onMounted,
   reactive,
   ref,
   toRefs
 } from "vue";
-import { getCategorylv1 } from "@/api/home.ts";
+import { getCategorylv1, getArticleByCt } from "@/api/home.ts";
 import { Toast } from "vant";
-import IzNavBar from "@/components/IzNavBar.vue";
-import IzTopBar from "@/components/IzTopBar.vue";
-import IzBlogItem from "@/components/IzBlogItem.vue";
-import IzClosePopver from "@/components/IzClosePopver.vue";
-import IzPullRefresh from "@/components/IzPullRefresh.vue";
-import IzFixedButton from "@/components/IzFixedButton.vue";
+import IzNavBar from "@/components/IzNavBar/index.vue";
+import IzTopBar from "@/components/IzTopBar/index.vue";
+import IzBlogItem from "@/components/IzBlogItem/index.vue";
+import IzClosePopver from "@/components/IzClosePopver/index.vue";
+import IzPullRefresh from "@/components/IzPullRefresh/index.vue";
+import IzFixedButton from "@/components/IzFixedButton/index.vue";
 export default defineComponent({
   name: "Home",
   components: {
@@ -52,19 +51,27 @@ export default defineComponent({
     IzFixedButton
   },
   setup() {
-    const topBar = reactive({
+    const state = reactive({
       bars: [],
       activeBarId: 0,
       barItemClick(id: number) {
-        topBar.activeBarId = id;
-      }
+        state.activeBarId = id;
+      },
+      list: [],
+      page: 1,
+      pageSize: 10
     });
 
     onMounted(async () => {
-      const { data } = await getCategorylv1();
-      topBar.bars = data;
-      topBar.activeBarId = data[0].id;
-      console.log(data);
+      const { data: bars } = await getCategorylv1();
+      state.bars = bars;
+      state.activeBarId = bars[0].id;
+      const { data: list } = await getArticleByCt({
+        id: state.activeBarId,
+        page: state.page,
+        pageSize: state.pageSize
+      });
+      console.log(list);
     });
 
     onActivated(() => {
@@ -72,10 +79,6 @@ export default defineComponent({
         message: "刷新数据",
         position: "bottom"
       });
-    });
-
-    onDeactivated(() => {
-      console.log("离开");
     });
 
     const blogs = ref([
@@ -164,7 +167,7 @@ export default defineComponent({
     };
 
     return {
-      ...toRefs(topBar),
+      ...toRefs(state),
       blogs,
       onBlogClose,
       closeTop,

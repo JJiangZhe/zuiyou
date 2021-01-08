@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import IzNologin from "@/components/IzNologin.vue";
+import IzNologin from "@/components/IzNologin/index.vue";
 import { defineComponent } from "vue";
 export default defineComponent({
   components: { IzNologin },

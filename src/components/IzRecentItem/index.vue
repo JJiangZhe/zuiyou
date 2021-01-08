@@ -82,7 +82,7 @@
 import { computed, defineComponent, onMounted, ref, toRaw } from "vue";
 import { ImagePreview } from "vant";
 import { getDateDiff } from "@/utils/time";
-import IzDivider from "./IzDivider.vue";
+import IzDivider from "../IzDivider/index.vue";
 export default defineComponent({
   components: { IzDivider },
   name: "IzRecentItem",

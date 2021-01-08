@@ -29,8 +29,8 @@
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from "vue";
 import { loginAction } from "@/api/user";
-import router from "@/router";
 import { useStore } from "vuex";
+import router from "@/router";
 export default defineComponent({
   name: "Login",
   setup() {

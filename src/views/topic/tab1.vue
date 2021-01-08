@@ -14,12 +14,12 @@
 </template>
 
 <script lang="ts">
-import IzDivider from "@/components/IzDivider.vue";
-import IzTitle from "@/components/IzTitle.vue";
-import IzNavBar from "@/components/IzNavBar.vue";
-import IzPullRefresh from "@/components/IzPullRefresh.vue";
-import IzSlideTab from "@/components/IzSlideTab.vue";
-import IzTopicItem from "@/components/IzTopicItem.vue";
+import IzDivider from "@/components/IzDivider/index.vue";
+import IzTitle from "@/components/IzTitle/index.vue";
+import IzNavBar from "@/components/IzNavBar/index.vue";
+import IzPullRefresh from "@/components/IzPullRefresh/index.vue";
+import IzSlideTab from "@/components/IzSlideTab/index.vue";
+import IzTopicItem from "@/components/IzTopicItem/index.vue";
 import { defineComponent, reactive, ref, toRefs } from "vue";
 import { Toast } from "vant";
 export default defineComponent({

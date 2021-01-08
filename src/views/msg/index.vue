@@ -23,8 +23,8 @@
 </template>
 
 <script lang="ts">
-import IzNavBar from "@/components/IzNavBar.vue";
-import IzTopBar from "@/components/IzTopBar.vue";
+import IzNavBar from "@/components/IzNavBar/index.vue";
+import IzTopBar from "@/components/IzTopBar/index.vue";
 import router from "@/router";
 import { computed, defineComponent, onActivated, reactive, toRefs } from "vue";
 import { useRoute } from "vue-router";

@@ -7,9 +7,9 @@
 </template>
 
 <script lang="ts">
-import IzDivider from "@/components/IzDivider.vue";
-import IzGrid from "@/components/IzGrid.vue";
-import IzNologin from "@/components/IzNologin.vue";
+import IzDivider from "@/components/IzDivider/index.vue";
+import IzGrid from "@/components/IzGrid/index.vue";
+import IzNologin from "@/components/IzNologin/index.vue";
 import { defineComponent, reactive, toRefs } from "vue";
 
 export default defineComponent({

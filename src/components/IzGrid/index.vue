@@ -31,7 +31,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import IzDivider from "./IzDivider.vue";
+import IzDivider from "../IzDivider/index.vue";
 export default defineComponent({
   name: "IzGrid",
   components: { IzDivider },

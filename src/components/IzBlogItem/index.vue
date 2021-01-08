@@ -102,7 +102,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from "vue";
 import { ImagePreview } from "vant";
-import IzDivider from "./IzDivider.vue";
+import IzDivider from "../IzDivider/index.vue";
 export default defineComponent({
   name: "BlogItem",
   components: { IzDivider },

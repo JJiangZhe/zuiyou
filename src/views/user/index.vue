@@ -47,8 +47,10 @@
 </template>
 
 <script lang="ts">
-import IzGrid from "@/components/IzGrid.vue";
-import IzNavBar from "@/components/IzNavBar.vue";
+import IzGrid from "@/components/IzGrid/index.vue";
+import IzNavBar from "@/components/IzNavBar/index.vue";
+import IzTopBar from "@/components/IzTopBar/index.vue";
+import IzUserInfo from "./component/IzUserInfo.vue";
 import { getLocal, setLocal } from "@/utils/index";
 import {
   defineComponent,
@@ -60,8 +62,6 @@ import {
   toRefs
 } from "vue";
 import router from "@/router";
-import IzTopBar from "@/components/IzTopBar.vue";
-import IzUserInfo from "./component/IzUserInfo.vue";
 
 interface Grid {
   id: number;
@@ -247,7 +247,6 @@ export default defineComponent({
 
     onActivated(() => {
       window.addEventListener("scroll", scrollToTop);
-      // state.user = ;
       state.user = JSON.parse(getLocal("user") as string);
     });
 

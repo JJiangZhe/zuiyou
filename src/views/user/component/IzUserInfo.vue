@@ -46,7 +46,7 @@ export default defineComponent({
           return "boy";
         case 2:
           return "girl";
-        case 3:
+        default:
           return "boy";
       }
     });

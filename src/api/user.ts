@@ -1,9 +1,5 @@
 import request from "@/utils/axios";
-
-interface Login {
-  phone: string;
-  password: string;
-}
+import { Login } from "@/interfaces";
 
 // 登陆
 export const loginAction = (data: Login) => {

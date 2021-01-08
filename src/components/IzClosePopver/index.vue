@@ -55,8 +55,8 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref } from "vue";
-import IzButton from "./IzButton.vue";
-import IzTextarea from "./IzTextarea.vue";
+import IzButton from "../IzButton/index.vue";
+import IzTextarea from "../IzTextarea/index.vue";
 export default defineComponent({
   components: { IzTextarea, IzButton },
   name: "ClosePopver",

@@ -10,10 +10,9 @@
 </template>
 
 <script lang="ts">
-import IzCellItem from "@/components/IzCellItem.vue";
-import IzDivider from "@/components/IzDivider.vue";
-import IzPageHead from "@/components/IzPageHead.vue";
-// import { getLocal } from "@/utils";
+import IzCellItem from "@/components/IzCellItem/index.vue";
+import IzDivider from "@/components/IzDivider/index.vue";
+import IzPageHead from "@/components/IzPageHead/index.vue";
 import { defineComponent, toRaw } from "vue";
 import { useStore } from "vuex";
 export default defineComponent({

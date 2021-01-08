@@ -29,11 +29,11 @@
 <script lang="ts">
 import { defineComponent, reactive, ref, toRefs } from "vue";
 import { Toast } from "vant";
-import IzNavBar from "@/components/IzNavBar.vue";
-import IzPullRefresh from "@/components/IzPullRefresh.vue";
-import IzSlideTab from "@/components/IzSlideTab.vue";
-import IzRecentItem from "@/components/IzRecentItem.vue";
-import IzFixedButton from "@/components/IzFixedButton.vue";
+import IzNavBar from "@/components/IzNavBar/index.vue";
+import IzPullRefresh from "@/components/IzPullRefresh/index.vue";
+import IzSlideTab from "@/components/IzSlideTab/index.vue";
+import IzRecentItem from "@/components/IzRecentItem/index.vue";
+import IzFixedButton from "@/components/IzFixedButton/index.vue";
 export default defineComponent({
   name: "Topic2",
   components: {
