@@ -2,10 +2,10 @@
   <div class="index">
     <iz-page-head icon="guanbi" title="发布" />
     <!-- 选择话题 -->
-    <div class="bg-color topic-wrap">
-      <div class="left" @click="checkTopic">
+    <div class="bg-color topic-wrap" @click="checkTopic">
+      <div class="left">
         <van-icon name="huati1" class="iconfont" class-prefix="icon" />
-        <span>选择话题</span>
+        <span>{{ topic.topic_name || "选择话题" }}</span>
       </div>
       <div class="right">
         <span class="text-grey">选择合适的话题会有更多的点赞哦~</span>
@@ -26,11 +26,11 @@
     </div>
 
     <router-view v-slot="{ Component }">
-      <keep-alive>
-        <transition name="top-bottom">
+      <transition name="top-bottom">
+        <keep-alive>
           <component :is="Component" />
-        </transition>
-      </keep-alive>
+        </keep-alive>
+      </transition>
     </router-view>
   </div>
 </template>
@@ -38,8 +38,8 @@
 <script lang="ts">
 import IzDivider from "@/components/IzDivider/index.vue";
 import IzPageHead from "@/components/IzPageHead/index.vue";
-import { defineComponent, toRefs, reactive, onMounted } from "vue";
-import { chooseTopic } from "@/api/topic";
+import { defineComponent, toRefs, reactive, computed } from "vue";
+import { useStore } from "vuex";
 import router from "@/router";
 export default defineComponent({
   components: { IzPageHead, IzDivider },
@@ -50,21 +50,14 @@ export default defineComponent({
       content: ""
     });
 
-    const getTopics = async () => {
-      const { data: topics } = await chooseTopic();
-      state.topics = topics;
-    };
-
-    onMounted(() => {
-      getTopics();
-    });
-
     const checkTopic = () => {
-      console.log("1");
       router.push({ path: "/check" });
     };
 
-    return { ...toRefs(state), checkTopic };
+    const store = useStore();
+    const topic = computed(() => store.state.topic);
+
+    return { ...toRefs(state), checkTopic, topic };
   }
 });
 </script>

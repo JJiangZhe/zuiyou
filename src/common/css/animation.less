@@ -95,11 +95,11 @@
 }
 
 .top-bottom-enter-active {
-  animation: toTop 2.5s linear forwards;
+  animation: toTop 0.25s ease-out forwards;
 }
 
 .top-bottom-leave-active {
-  animation: toTop 2.5s linear forwards;
+  animation: toBottom 0.25s ease-in forwards;
 }
 
 @keyframes toTop {
@@ -109,5 +109,15 @@
 
   to {
     transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes toBottom {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, 100%, 0);
   }
 }

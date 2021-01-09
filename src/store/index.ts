@@ -6,7 +6,8 @@ import router from "@/router";
 export default createStore({
   state: {
     user: false || {},
-    token: ""
+    token: "",
+    topic: {}
   },
   mutations: {
     // 初始化用户
@@ -26,6 +27,9 @@ export default createStore({
     setToken(state, token) {
       state.token = token;
       setLocal("token", token);
+    },
+    setTopic(state, topic) {
+      state.topic = topic;
     },
     // 退出登陆
     logout(state) {

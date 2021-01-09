@@ -63,7 +63,6 @@ export default defineComponent({
 
   .iconfont {
     font-weight: bold;
-    z-index: 99;
   }
 
   .submit {
@@ -77,7 +76,7 @@ export default defineComponent({
 
 .center {
   position: absolute;
-  width: 100%;
+  width: 50%;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);

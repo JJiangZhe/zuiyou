@@ -1,17 +1,20 @@
 <template>
   <div id="app" ref="appRef">
     <router-view v-slot="{ Component }">
-      <keep-alive>
-        <component :is="Component" />
-      </keep-alive>
+      <transition>
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </transition>
     </router-view>
   </div>
 </template>
 
 <script lang="ts">
 import { getLocal } from "@/utils/index";
-import { onMounted } from "vue";
+import { computed, onMounted } from "vue";
 import { useStore } from "vuex";
+import { useRoute } from "vue-router";
 export default {
   setup() {
     const theme = getLocal("theme");
@@ -23,7 +26,9 @@ export default {
       store.commit("initUser");
     });
 
-    return {};
+    const meta = computed(() => useRoute().meta);
+
+    return { meta };
   }
 };
 </script>

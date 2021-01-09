@@ -197,7 +197,7 @@ export default defineComponent({
 
 // 消息
 .msg {
-  padding: 20px;
+  padding: 20px 0;
 }
 
 // 神评

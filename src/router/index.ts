@@ -11,8 +11,7 @@ const routes: Array<RouteRecordRaw> = [
     path: "/home",
     name: "Home",
     meta: {
-      id: 1,
-      transition: ""
+      id: 1
     },
     component: () => import("@/views/home/index.vue")
   },
@@ -20,8 +19,7 @@ const routes: Array<RouteRecordRaw> = [
     path: "/topic",
     name: "Topic",
     meta: {
-      id: 2,
-      transition: ""
+      id: 2
     },
     component: () => import("@/views/topic/index.vue"),
     children: [
@@ -49,8 +47,7 @@ const routes: Array<RouteRecordRaw> = [
     path: "/msg",
     name: "Msg",
     meta: {
-      id: 3,
-      transition: ""
+      id: 3
     },
     component: () => import("@/views/msg/index.vue"),
     children: [
@@ -78,8 +75,7 @@ const routes: Array<RouteRecordRaw> = [
     path: "/user",
     name: "User",
     meta: {
-      id: 4,
-      transition: ""
+      id: 4
     },
     component: () => import("@/views/user/index.vue")
   },
